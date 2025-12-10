@@ -59,7 +59,7 @@
 }
 
 .menu-toggle {
-  display: none;
+  display: none !important;
   flex-direction: column;
   justify-content: space-between;
   width: 30px;
@@ -177,7 +177,7 @@
 
 @media screen and (max-width: 1068px) {
   .menu-toggle {
-    display: flex;
+    display: none !important;
   }
   .desktop-menu {
     display: none;
