@@ -201,7 +201,7 @@ hr {
 }
 .product-card {
   position: relative;
-  background-size: 100%;
+  background-size: cover;
   background-position: center;
   border-radius: 20px;
   padding: 0;
@@ -213,12 +213,11 @@ hr {
   min-height: 320px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
   overflow: hidden;
-  transition: all 0.3s ease, background-size 3s ease-in-out;
+  transition: all 0.3s ease;
 }
 .product-card:hover {
   transform: translateY(-10px);
   box-shadow: 0 12px 32px rgba(255, 111, 0, 0.3);
-  background-size: 110%;
 }
 .product-card::before {
   content: "";
@@ -405,3 +404,132 @@ hr {
     width: 60vw;
   }
 }
+/**********************************parts-section******************************** */
+.parts-section {
+  height: auto;
+  min-height: 60vh;
+  margin: 5vh auto;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+}
+.parts-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  max-width: 1400px;
+  width: 100%;
+  padding: 0 2rem;
+  direction: rtl;
+}
+.parts-card {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  border-radius: 20px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 0;
+  aspect-ratio: 3/4;
+  min-height: 320px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.parts-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 32px rgba(255, 111, 0, 0.25);
+}
+.parts-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.1) 0%,
+    rgba(255, 111, 0, 0.4) 60%,
+    rgba(148, 80, 2, 0.8) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+  transition: opacity 0.3s ease;
+}
+.parts-card:hover::before {
+  opacity: 0.85;
+}
+.parts-card > button {
+  position: relative;
+  z-index: 2;
+  background: #ffffff;
+  color: #ff6f00;
+  border: none;
+  padding: 0.85rem 2rem;
+  margin: 1.5rem;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 1.6em;
+  font-weight: bold;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease;
+  width: calc(100% - 3rem);
+  text-align: center;
+}
+.parts-card > button:hover {
+  background-color: #ff6f00;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 111, 0, 0.5);
+}
+.parts-card-1 {
+  background-image: url("/assets/images/sweets/sweet2.png");
+}
+.parts-card-2 {
+  background-image: url("/assets/images/sweets/cake.jpg");
+}
+.parts-card-3 {
+  background-image: url("/assets/images/sweets/kaa7k.jpg");
+}
+.parts-card-4 {
+  background-image: url("/assets/images/sweets/konafa.jpg");
+}
+
+/* Responsive parts-section */
+@media (max-width: 1200px) {
+  .parts-container {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    padding: 0 1.5rem;
+  }
+  .parts-card {
+    min-height: 280px;
+  }
+  .parts-card > button {
+    font-size: 1.4em;
+    padding: 0.75rem 1.8rem;
+    margin: 1.3rem;
+    width: calc(100% - 2.6rem);
+  }
+}
+@media (max-width: 768px) {
+  .parts-section {
+    min-height: 40vh;
+    margin: 3vh auto;
+    padding: 1.5rem 0.5rem;
+    gap: 2rem;
+  }
+  .parts-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.2rem;
+    padding: 0 1rem;
+  }
+  .parts-card {
+    min-height: 240px;
+    border-radius: 15px;
+  }
+  .parts-card > button {
+    font-size: 1.3em;
