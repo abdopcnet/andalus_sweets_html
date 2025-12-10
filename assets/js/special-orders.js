@@ -46,7 +46,6 @@ function handleFormSubmit(e) {
   const formData = {
     name: document.getElementById("order-name").value,
     phone: document.getElementById("order-phone").value,
-    quantity: document.getElementById("order-quantity").value,
     date: document.getElementById("order-date").value,
     details: document.getElementById("order-details").value,
   };
