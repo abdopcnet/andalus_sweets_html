@@ -53,9 +53,9 @@
 .hero-content {
   max-width: 1200px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
   align-items: center;
   position: relative;
   z-index: 1;
@@ -231,11 +231,62 @@
   font-weight: 700;
 }
 
+/* Features Grid */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Feature Cards */
+.image-gallery-section {
+  margin: 20px 0;
+}
+
+.gallery-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gallery-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gallery-image-wrapper {
+  border: 10px solid #ff8c00;
+  border-radius: 15px;
+  box-shadow: 0 0 30px rgba(255, 140, 0, 0.6), 0 0 50px rgba(255, 140, 0, 0.4);
+  overflow: hidden;
+  display: inline-block;
+  width: 100%;
+  max-width: 350px;
+  transition: transform 0.3s ease;
+}
+
+.gallery-image-wrapper img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.gallery-card:hover .gallery-image-wrapper {
+  transform: translateY(-5px);
+}
+
+.gallery-card:hover .gallery-image-wrapper img {
+  transform: scale(1.05);
+}
+
 /* Responsive Design */
 @media (max-width: 968px) {
   .hero-content {
-    grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 30px;
     text-align: center;
   }
   .hero-text {
@@ -266,6 +317,13 @@
   .cta-button {
     padding: 15px 35px;
     font-size: 1.1rem;
+  }
+  .features-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .feature-card {
+    max-width: 100%;
   }
   .description-text {
     font-size: 1.1rem;
@@ -312,4 +370,3 @@
     font-size: 1.1rem;
   }
 }
-
