@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-left">
+          <img src="../assets/logo2.jpg" alt="Company Logo" class="logo" />
+        </div>
+        
+        <!-- Hamburger Menu Button -->
+        <button class="menu-toggle" @click="isMenuOpen = !isMenuOpen">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+    
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" :class="{ 'is-open': isMenuOpen }">
+          <div class="navbar-center">
+            <a href="/Orders" class="nav-item">عروض</a>
+            <a href="/Location" class="nav-item"><img src="../assets/location.png" alt="">حدد موقعك</a>
+            <a href="#" class="nav-item"><img src="../assets/phone.png" alt="">اتصل بنا</a>
+          </div>
+          <div class="navbar-right">
+            <a href="/Login" class="nav-item login-icon"><img src="../assets/Group 1.png" alt=""> تسجيل الدخول</a>
+            <a href="#" class="nav-item cart-icon"><img src="../assets/uil_down-arrow.png" alt="">عربة التسوق<img src="../assets/Vectorcart.png" alt=""></a>
+          </div>
+        </div>
+    
+        <!-- Desktop Menu -->
+        <div class="desktop-menu">
+          <div class="navbar-center">
+            <a href="/Orders" class="nav-item"><i class="fas fa-percent"></i>عروض</a>
+            <a href="/Location" class="nav-item"><img src="../assets/location.png" alt="">حدد موقعك</a>
+            <a href="#" class="nav-item"><img src="../assets/phone.png" alt="">اتصل بنا</a>
+          </div>
+          <div class="navbar-right">
+            <a href="/Login" class="nav-item login-icon"><img src="../assets/Group 1.png" alt=""> تسجيل الدخول</a>
+            <a href="../views/Orders.vue" class="nav-item cart-icon"><img src="../assets/uil_down-arrow.png" alt="">عربة التسوق<img src="../assets/Vectorcart.png" alt=""></a>
+          </div>
+        </div>
+      </nav>
+    
+      <div class="secondary-nav">
+        <a href="/food-restaurant" class="secondary-nav-item active" ><img src="../assets/logo2.jpg" class="secondary-nav-icon">مذاق النبلاء </a>
+        <a href="/Sweets-restaurant" class="secondary-nav-item "><img src="../assets/image.png" class="secondary-nav-icon"> حلويات الاندلس</a>
+        <a href="/Orders" class="secondary-nav-item"><img src="../assets/solar_chef-hat-broken.png" class="secondary-nav-icon">طلبات خاصة</a>
+      </div>
+</body>
+</html>
