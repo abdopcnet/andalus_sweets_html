@@ -211,63 +211,44 @@
 
     <!-- Content Section -->
     <section class="content">
-      <!-- Category Cards Section -->
+      <!-- Parts Section -->
       <section class="parts-section">
         <img
           src="/assets/images/food/bannar1.png"
           alt="border"
           class="caption-image"
         />
-        <div class="container">
-          <div class="card card-1" onclick="selectCategory('مقبلات')">
+        <div class="parts-container">
+          <div
+            class="parts-card parts-card-1"
+            onclick="selectCategory('مقبلات')"
+          >
             <button>مقبلات</button>
           </div>
-          <div class="card card-2" onclick="selectCategory('لحوم')">
+          <div class="parts-card parts-card-2" onclick="selectCategory('لحوم')">
             <button>لحوم</button>
           </div>
-          <div class="card card-3" onclick="selectCategory('دواجن')">
+          <div
+            class="parts-card parts-card-3"
+            onclick="selectCategory('دواجن')"
+          >
             <button>دواجن</button>
           </div>
-          <div class="card card-4" onclick="selectCategory('فطائر')">
+          <div
+            class="parts-card parts-card-4"
+            onclick="selectCategory('فطائر')"
+          >
             <button>فطائر</button>
           </div>
         </div>
       </section>
 
-      <!-- Products Section (All Products) -->
-      <section id="products-section" class="products-section">
-        <img
-          src="/assets/images/food/banner5.png"
-          class="caption-image"
-          alt=""
-        />
-        <div class="container" id="products-container">
-          <!-- Products will be rendered here by JavaScript -->
-        </div>
-        <button class="more-btn" onclick="window.location.reload()">
-          عرض المزيد
-        </button>
-      </section>
+      <img src="/assets/images/food/banner5.png" class="caption-image" alt="" />
 
-      <!-- Category Products Section (Hidden by default) -->
-      <section
-        id="category-products-section"
-        class="category-products-section"
-        style="display: none"
-      >
-        <img
-          src="/assets/images/food/banner5.png"
-          class="caption-image"
-          alt=""
-        />
-        <h2 class="category-title" id="category-title"></h2>
-        <div class="container" id="category-products-container">
-          <!-- Filtered products will be rendered here by JavaScript -->
-        </div>
-        <button class="more-btn" onclick="clearCategory()">
-          عرض المزيد من <span id="category-name-span"></span>
-        </button>
-      </section>
+      <!-- Products Section -->
+      <div class="products-container" id="products-section">
+        <!-- Products will be rendered here by JavaScript -->
+      </div>
     </section>
 
     <!-- Footer Component -->
