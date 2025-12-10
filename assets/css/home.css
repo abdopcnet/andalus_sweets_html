@@ -115,15 +115,6 @@
   animation: float 3s ease-in-out infinite;
 }
 
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
-}
 
 /* Description Section */
 .description-section {
@@ -148,8 +139,8 @@
 
 /* Order Section */
 .order-section {
-  background: linear-gradient(180deg, #fff5e6 0%, #ffe4d1 100%);
-  padding: 100px 20px;
+
+  padding: 20px 20px;
 }
 
 .chef-container {
@@ -173,15 +164,6 @@
   animation: pulse 2s ease-in-out infinite;
 }
 
-@keyframes pulse {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-}
 
 .chef-video {
   width: 100%;
@@ -256,6 +238,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  text-decoration: none;
+  color: inherit;
 }
 
 .gallery-image-wrapper {
@@ -328,9 +312,10 @@
   .description-text {
     font-size: 1.1rem;
     line-height: 1.8;
+    font-family: a;
   }
   .order-section {
-    padding: 60px 15px;
+    padding: 15px 15px;
   }
   .chef-circle {
     width: 150px;
@@ -361,6 +346,7 @@
   }
   .description-text {
     font-size: 1rem;
+    font-family: "Aref Ruqaa", serif;
   }
   .order-title {
     font-size: 1.6rem;
