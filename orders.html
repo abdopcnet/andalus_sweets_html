@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>سلة التسوق - حلويات الأندلس</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://www.google.com" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <link rel="stylesheet" href="/assets/css/navbar.css" />
+    <link rel="stylesheet" href="/assets/css/footer.css" />
+    <link rel="stylesheet" href="/assets/css/orders.css" />
+  </head>
+  <body>
+    <!-- Navbar Component -->
+    <nav class="navbar">
+      <div class="navbar-left">
+        <a href="/">
+          <img
+            src="/assets/images/navbar/mazaq_alandalus_navbar.jpg"
+            alt="Company Logo"
+            class="logo"
+          />
+        </a>
+      </div>
+
+      <a href="/orders.html" class="nav-item cart-icon mobile-only-cart">
+        <span class="cart-badge" id="mobile-cart-badge" style="display: none"
+          >0</span
+        >
+        <img src="/assets/images/navbar/cart.png" alt="Cart" />
+      </a>
+
+      <div class="desktop-menu">
+        <div class="navbar-center main-links">
+          <a href="/food-restaurant.html" class="nav-item">
+            <img
+              src="/assets/images/navbar/mazaq_alnubala.jpg"
+              style="height: 4vh"
+              alt=""
+            />
+            مذاق النبلاء للمأكولات
+          </a>
+          <a href="/sweets-restaurant.html" class="nav-item">
+            <img
+              src="/assets/images/navbar/mazaq_alandalus_logo.png"
+              style="height: 4vh"
+              alt=""
+            />
+            مذاق الأندلس للحلويات
+          </a>
+          <a href="/special-orders.html" class="nav-item">
+            <img
+              src="/assets/images/navbar/delivery.png"
+              style="height: 4vh"
+              alt=""
+            />
+            عروض المناسبات والحفلات
+          </a>
+        </div>
+        <div class="navbar-center">
+          <a href="#" class="nav-item" id="register-link-desktop">
+            <img src="/assets/images/navbar/customer_info.png" alt="" />
+            سجل بياناتك
+          </a>
+          <a href="/contact.html" class="nav-item">
+            <img src="/assets/images/navbar/contact_us.png" alt="" />
+            اتصل بنا
+          </a>
+        </div>
+        <div class="navbar-right">
+          <a href="/orders.html" class="nav-item cart-icon">
+            <img src="/assets/images/navbar/cart.png" alt="" />
+            عربة التسوق
+            <span
+              class="cart-badge"
+              id="desktop-cart-badge"
+              style="display: none"
+              >0</span
+            >
+            <img src="/assets/images/navbar/cart.png" alt="" />
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Location Modal -->
+    <div id="location-modal" class="modal-overlay" style="display: none">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>اختر موقعك</h2>
+          <button class="close-btn" id="close-location-modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <select id="branch-select" class="form-control">
+            <option value="">اختر الفرع</option>
+            <option value="khudraa">فرع الخضراء</option>
+            <option value="nawaria">فرع النوارية</option>
+            <option value="sharai">فرع الشرائع</option>
+            <option value="sitteen">فرع الستين</option>
+            <option value="awali">فرع العوالي</option>
+          </select>
+          <button id="get-location-btn" class="location-btn">
+            📍 موقعي الحالي
+          </button>
+          <button id="confirm-location-btn" class="confirm-btn">تأكيد</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Orders Section -->
+    <section class="orders-section">
+      <div class="container">
+        <h1 class="orders-title">سلة التسوق</h1>
+
+        <div id="cart-items-container">
+          <!-- Cart items will be rendered here by JavaScript -->
+        </div>
+
+        <div id="empty-cart" class="empty-cart" style="display: none">
+          <p>السلة فارغة</p>
+          <a href="/" class="back-to-home-btn">العودة للصفحة الرئيسية</a>
+        </div>
+
+        <div id="cart-summary" class="cart-summary" style="display: none">
+          <div class="total-price">
+            <span>المجموع الكلي:</span>
+            <span id="total-price-amount">0 ريال</span>
+          </div>
+          <a href="/checkout.html" class="checkout-btn">إتمام الطلب</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer Component -->
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-section about">
+          <h3>عن حلويات الأندلس</h3>
+          <p>
+            نقدم لك أشهى الحلويات الشرقية والغربية، وألذ الأكلات البيتية، مع
+            إمكانية تنفيذ طلبات خاصة تُحضّر بحب وجودة عالية.
+          </p>
+          <h3>منتجاتنا</h3>
+          <ul>
+            <li>حلويات غربية</li>
+            <li>حلويات شرقية</li>
+            <li>مأكولات بأنواعها</li>
+            <li>طلبات خاصة للحفلات</li>
+          </ul>
+        </div>
+
+        <div class="footer-section branches-map">
+          <h3>فروعنا - المملكة العربية السعودية</h3>
+          <div class="branch-item">
+            <h4>فرع الخضراء - حي الخضراء، مكة المكرمة</h4>
+            <p>
+              <i class="fas fa-map-marker-alt"></i>
+              +966566956412
+            </p>
+          </div>
+          <div class="branch-item">
+            <h4>فرع العوالي - Ibrahim Al Joufaili, مكة 24372</h4>
+            <p>
+              <i class="fas fa-map-marker-alt"></i>
+              +966125666555
+            </p>
+          </div>
+          <div class="branch-item">
+            <h4>فرع الشرائع - 8144 المهندس عمر قاضي، الخضراء، مكة</h4>
+            <p>
+              <i class="fas fa-map-marker-alt"></i>
+              +966125666555
+            </p>
+          </div>
+          <div class="branch-item">
+            <h4>فرع النوارية - العمرة الجديدة، مكة 24416</h4>
+            <p>
+              <i class="fas fa-map-marker-alt"></i>
+              +966566756481
+            </p>
+          </div>
+          <div class="branch-item">
+            <h4>فرع الستين - 7730 قصر الضيافة، الزهراء، مكة 24225</h4>
+            <p>
+              <i class="fas fa-map-marker-alt"></i>
+              +966566956895
+            </p>
+          </div>
+        </div>
+
+        <div class="footer-section branches-map">
+          <h3>موقعنا</h3>
+          <div class="branches-list">
+            <div class="map-box">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3713.6688259916573!2d39.91637687496799!3d21.473513080232166!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x15c2011b1f773495%3A0x3b4a7e175a5a9267!2z2K3ZhNmI2YrYp9iqINin2YTYo9mG2K_ZhNizIC0g2YHYsdi5INin2YTYrtiu2LHYp9ih!5e0!3m2!1sar!2seg!4v1700000000000"
+                width="100%"
+                height="100%"
+                style="border: 0"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>
+          <span id="current-year"></span> © جميع الحقوق محفوظة - حلويات الأندلس
+        </p>
+      </div>
+    </footer>
+
+    <!-- JavaScript Files -->
+    <script src="/assets/js/cart.js"></script>
+    <script src="/assets/js/utils.js"></script>
+    <script src="/assets/js/navbar.js"></script>
+    <script src="/assets/js/orders.js"></script>
+    <script src="/assets/js/main.js"></script>
+    <script>
+      // Update current year
+      document.getElementById("current-year").textContent =
+        new Date().getFullYear();
+    </script>
+  </body>
+</html>
