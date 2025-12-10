@@ -114,14 +114,19 @@ function renderProducts(productsToRender, containerId) {
   productsToRender.forEach((product) => {
     const card = document.createElement("div");
     const cardNumber = (product.id % 6) + 1;
-    card.className = `card card-${cardNumber}`;
+    card.className = `product-card product-card-${cardNumber}`;
+    card.style.backgroundImage = `url(${product.image})`;
 
     card.innerHTML = `
-      <div class="card-info">
-        <p>${product.name}</p>
-        <p>${product.price} ريال</p>
+      <div class="product-card-content">
+        <div class="product-card-info">
+          <p class="product-name">${product.name}</p>
+          <p class="product-price">${product.price} ريال</p>
+        </div>
+        <button class="add-to-cart-btn" onclick="addProductToCart(${product.id})">
+          أضف للسلة
+        </button>
       </div>
-      <button onclick="addProductToCart(${product.id})">أضف</button>
     `;
 
     container.appendChild(card);
@@ -141,37 +146,45 @@ function selectCategory(category) {
   selectedCategory = category;
   const filteredProducts = products.filter((p) => p.category === category);
 
-  // Hide all products section
-  document.getElementById("products-section").style.display = "none";
+  // Filter products in the same container
+  const container = document.getElementById("products-section");
+  if (!container) return;
 
-  // Show category products section
-  const categorySection = document.getElementById("category-products-section");
-  categorySection.style.display = "block";
-  document.getElementById("category-title").textContent = category;
-  document.getElementById("category-name-span").textContent = category;
+  container.innerHTML = "";
 
-  // Render filtered products
-  renderProducts(filteredProducts, "category-products-container");
+  filteredProducts.forEach((product) => {
+    const card = document.createElement("div");
+    const cardNumber = (product.id % 6) + 1;
+    card.className = `product-card product-card-${cardNumber}`;
+    card.style.backgroundImage = `url(${product.image})`;
 
-  // Smooth scroll to category section
-  setTimeout(() => {
-    categorySection.scrollIntoView({ behavior: "smooth", block: "start" });
-  }, 100);
-}
+    card.innerHTML = `
+      <div class="product-card-content">
+        <div class="product-card-info">
+          <p class="product-name">${product.name}</p>
+          <p class="product-price">${product.price} ريال</p>
+        </div>
+        <button class="add-to-cart-btn" onclick="addProductToCart(${product.id})">
+          أضف للسلة
+        </button>
+      </div>
+    `;
 
-// Clear category filter
-function clearCategory() {
-  selectedCategory = null;
-  document.getElementById("category-products-section").style.display = "none";
-  document.getElementById("products-section").style.display = "block";
-  document.getElementById("products-section").scrollIntoView({
-    behavior: "smooth",
-    block: "start",
+    container.appendChild(card);
   });
+
+  // Smooth scroll to products section
+  setTimeout(() => {
+    container.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, 100);
 }
 
 // Initialize on page load
 document.addEventListener("DOMContentLoaded", () => {
   // Render all products initially
-  renderProducts(products.slice(0, 8), "products-container");
+  const container = document.getElementById("products-section");
+  if (container) {
+    container.className = "products-container";
+    renderProducts(products, "products-section");
+  }
 });
