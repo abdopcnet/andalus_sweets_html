@@ -82,6 +82,8 @@ function updateCartUI() {
       badge.style.display = "none";
     }
   });
+  // Dispatch event for navbar
+  window.dispatchEvent(new Event("cartUpdated"));
 }
 
 // Initialize cart UI on page load
