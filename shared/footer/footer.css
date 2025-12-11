@@ -31,12 +31,14 @@
   padding-bottom: 8px;
 }
 
+
 .footer-section p {
   font-size: 1rem;
   line-height: 1.8;
   margin: 12px 0;
+}.footer-section img{
+	cursor: pointer;
 }
-
 .footer-section i {
   margin-left: 10px;
   color: #fffbe5;
@@ -60,7 +62,9 @@
   background: rgba(255, 255, 255, 0.1);
   padding: 8px;
   border-radius: 10px;
+  display: flex;
   transition: transform 0.3s ease, background 0.3s ease;
+  gap: 2rem;
 }
 
 .branch-item:hover {
@@ -72,11 +76,16 @@
   font-size: 1rem;
   margin-bottom: 5px;
   color: #fffbe5;
+
+
 }
 
 .branch-item p {
+	display: contents;
   font-size: 1rem;
-  margin: 0;
+  font-family:cursive;
+
+
 }
 
 /* Map Box */
@@ -100,9 +109,13 @@
 @media (min-width: 1200px) {
   .footer-container {
     grid-template-columns: 1fr 1fr 1.2fr;
+
   }
   .map-box {
     height: 280px;
+  }
+   .footer-section .about{
+	display: none;
   }
 }
 
@@ -116,6 +129,9 @@
   }
   .map-box {
     height: 230px;
+  }
+  .footer-section .about{
+	display: none;
   }
 }
 
@@ -145,6 +161,9 @@
   .map-box {
     height: 220px;
     border-radius: 10px;
+  }
+   .footer-section .about{
+	display: none;
   }
 }
 
@@ -181,6 +200,9 @@
     font-size: 0.85rem;
     padding-top: 15px;
   }
+   .footer-section .about{
+	display: none;
+  }
 }
 
 @media (max-width: 360px) {
@@ -201,5 +223,8 @@
   }
   .footer-bottom {
     font-size: 0.8rem;
+  }
+   .footer-section .about{
+	display: none;
   }
 }
