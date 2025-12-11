@@ -25,25 +25,63 @@ function renderCartItems() {
     cartItem.className = "cart-item";
     cartItem.innerHTML = `
       <div class="cart-item-image">
-        <img src="${item.image}" alt="${item.name}" />
+        <img data-cart-img alt="${item.name}" />
       </div>
       <div class="cart-item-info">
         <h3 class="cart-item-name">${item.name}</h3>
         <p class="cart-item-price">${item.price.toFixed(2)} ريال</p>
       </div>
       <div class="cart-item-qty">
-        <button class="qty-btn" onclick="increaseCartItem(${item.id})">+</button>
+        <button class="qty-btn" data-increase>+</button>
         <span class="qty-value">${item.qty}</span>
-        <button class="qty-btn" onclick="decreaseCartItem(${item.id})" ${item.qty <= 1 ? 'disabled' : ''}>-</button>
+        <button class="qty-btn" data-decrease ${item.qty <= 1 ? 'disabled' : ''}>-</button>
       </div>
       <div class="cart-item-total">
         <span>${(item.price * item.qty).toFixed(2)} ريال</span>
       </div>
-      <button class="delete-btn" onclick="removeCartItem(${item.id})">
+      <button class="delete-btn" data-remove>
         🗑️
       </button>
     `;
+
+    // Append and then configure dynamic behaviors (image fallbacks and event handlers)
     container.appendChild(cartItem);
+
+    // Image fallback logic: try multiple candidate paths if the original fails
+    const imgEl = cartItem.querySelector('img[data-cart-img]');
+    const rawPath = item.image || '';
+    const candidates = [
+      rawPath,
+      `../food/${rawPath}`,
+      `../sweets/${rawPath}`,
+      `/${rawPath}`,
+      `../${rawPath}`,
+      '../navbar/mazaq_alandalus_navbar.jpg'
+    ].filter(Boolean);
+
+    let tryIndex = 0;
+    imgEl.onerror = function () {
+      tryIndex++;
+      if (tryIndex < candidates.length) {
+        imgEl.src = candidates[tryIndex];
+      } else {
+        // last resort: remove broken icon and show a background color
+        imgEl.style.display = 'none';
+        const wrapper = cartItem.querySelector('.cart-item-image');
+        if (wrapper) wrapper.style.background = '#f2f2f2';
+      }
+    };
+    // start with first candidate
+    imgEl.src = candidates[0];
+
+    // Wire up buttons to existing functions
+    const incBtn = cartItem.querySelector('button[data-increase]');
+    const decBtn = cartItem.querySelector('button[data-decrease]');
+    const delBtn = cartItem.querySelector('button[data-remove]');
+
+    if (incBtn) incBtn.addEventListener('click', () => increaseCartItem(item.id));
+    if (decBtn) decBtn.addEventListener('click', () => decreaseCartItem(item.id));
+    if (delBtn) delBtn.addEventListener('click', () => removeCartItem(item.id));
   });
 
   updateTotalPrice();
