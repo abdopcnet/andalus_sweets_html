@@ -31,18 +31,28 @@
   padding-bottom: 8px;
 }
 
-
 .footer-section p {
   font-size: 1rem;
   line-height: 1.8;
   margin: 12px 0;
-}.footer-section img{
-	cursor: pointer;
 }
+
+.footer-section img{
+  cursor: pointer;
+}
+
 .footer-section i {
   margin-left: 10px;
   color: #fffbe5;
   font-size: 1.1rem;
+}
+
+/* أيقونات السوشال */
+.footer-social {
+  margin-top: 15px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 /* Branches and Map Section */
@@ -76,16 +86,12 @@
   font-size: 1rem;
   margin-bottom: 5px;
   color: #fffbe5;
-
-
 }
 
 .branch-item p {
-	display: contents;
+  display: contents;
   font-size: 1rem;
   font-family:cursive;
-
-
 }
 
 /* Map Box */
@@ -105,20 +111,17 @@
   font-size: 1rem;
 }
 
-/* Responsive Footer Styles */
+/* Desktop */
 @media (min-width: 1200px) {
   .footer-container {
     grid-template-columns: 1fr 1fr 1.2fr;
-
   }
   .map-box {
     height: 280px;
   }
-   .footer-section .about{
-	display: none;
-  }
 }
 
+/* Tablet */
 @media (max-width: 1024px) {
   .footer-container {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -130,11 +133,9 @@
   .map-box {
     height: 230px;
   }
-  .footer-section .about{
-	display: none;
-  }
 }
 
+/* Mobile */
 @media (max-width: 768px) {
   .footer {
     padding: 30px 15px 15px;
@@ -146,6 +147,14 @@
   .footer-section {
     text-align: center;
   }
+
+  /* هنا نخفي النص والقائمة في قسم about ونترك الأيقونات */
+  .footer-section.about h3,
+  .footer-section.about p,
+  .footer-section.about ul {
+    display: none;
+  }
+
   .footer-section h3 {
     font-size: 1.2rem;
   }
@@ -161,9 +170,6 @@
   .map-box {
     height: 220px;
     border-radius: 10px;
-  }
-   .footer-section .about{
-	display: none;
   }
 }
 
@@ -200,9 +206,6 @@
     font-size: 0.85rem;
     padding-top: 15px;
   }
-   .footer-section .about{
-	display: none;
-  }
 }
 
 @media (max-width: 360px) {
@@ -223,8 +226,5 @@
   }
   .footer-bottom {
     font-size: 0.8rem;
-  }
-   .footer-section .about{
-	display: none;
   }
 }

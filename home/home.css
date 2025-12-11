@@ -244,7 +244,7 @@
 	overflow: hidden;
 	display: inline-block;
 	width: 100%;
-	max-width: 350px;
+	max-width: 330px;
 	transition: transform 0.3s ease;
 }
 
@@ -265,7 +265,7 @@
 /* Responsive Design */
 @media (max-width: 968px) {
 	.hero-content {
-		gap: 30px;
+		gap: 15px;
 		text-align: center;
 	}
 	.hero-text {

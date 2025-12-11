@@ -1,120 +1,119 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-	<head>
-		<meta charset="UTF-8" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-		<meta http-equiv="Pragma" content="no-cache" />
-		<meta http-equiv="Expires" content="0" />
-		<title>مذاق النبلاء للمأكولات</title>
-		<!-- Local fonts only -->
-		<link rel="stylesheet" />
-		<link rel="stylesheet" href="../shared/main.css" />
-		<link rel="stylesheet" href="../shared/navbar/navbar.css" />
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>مذاق النبلاء للمأكولات</title>
+    <!-- Local fonts only -->
+    <link rel="stylesheet" />
+    <link rel="stylesheet" href="../shared/main.css" />
+    <link rel="stylesheet" href="../shared/navbar/navbar.css" />
+    <link rel="stylesheet" href="../shared/footer/footer.css" />
+    <link rel="stylesheet" href="food.css" />
+  </head>
+  <body class="food-restaurant">
+    <!-- Navbar Component -->
+    <div id="navbar-container"></div>
 
-		<link rel="stylesheet" href="../shared/footer/footer.css" />
-		<link rel="stylesheet" href="food.css" />
-	</head>
-	<body>
-		<!-- Navbar Component -->
-	  <div id="navbar-container"></div>
+    <!-- Location Modal -->
+    <div id="location-modal" class="modal-overlay" style="display: none">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>اختر موقعك</h2>
+          <button class="close-btn" id="close-location-modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <select id="branch-select" class="form-control">
+            <option value="">اختر الفرع</option>
+            <option value="khudraa">فرع الخضراء</option>
+            <option value="nawaria">فرع النوارية</option>
+            <option value="sharai">فرع الشرائع</option>
+            <option value="sitteen">فرع الستين</option>
+            <option value="awali">فرع العوالي</option>
+          </select>
+          <button id="get-location-btn" class="location-btn">📍 موقعي الحالي</button>
+          <button id="confirm-location-btn" class="confirm-btn">تأكيد</button>
+        </div>
+      </div>
+    </div>
 
-		<!-- Location Modal -->
-		<div id="location-modal" class="modal-overlay" style="display: none">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h2>اختر موقعك</h2>
-					<button class="close-btn" id="close-location-modal">&times;</button>
-				</div>
-				<div class="modal-body">
-					<select id="branch-select" class="form-control">
-						<option value="">اختر الفرع</option>
-						<option value="khudraa">فرع الخضراء</option>
-						<option value="nawaria">فرع النوارية</option>
-						<option value="sharai">فرع الشرائع</option>
-						<option value="sitteen">فرع الستين</option>
-						<option value="awali">فرع العوالي</option>
-					</select>
-					<button id="get-location-btn" class="location-btn">📍 موقعي الحالي</button>
-					<button id="confirm-location-btn" class="confirm-btn">تأكيد</button>
-				</div>
-			</div>
-		</div>
+    <!-- Hero Section -->
+    <section class="hero-section">
 
-		<!-- Hero Section -->
-		<section class="hero-section">
-			<div class="food-slider">
-				<video
-					class="hero-video"
-					src="videos/foods_slideshow.mp4"
-					autoplay
-					loop
-					muted
-					playsinline
-					style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px"
-				></video>
-			</div>
-			<div class="hero-content">
-				<h1 class="hero-title">
-					مذاق النبلاء .... <br />
-					كل وجبة حكاية من التميز
-				</h1>
-				<a href="#products-section">
-					<button class="order-button order-button--fixed">
-						اطلب الآن
-						<img src="../shared/navbar/images/cart.png" alt="" />
-					</button>
-				</a>
-			</div>
-		</section>
 
-		<!-- Content Section -->
-		<section class="content">
-			<!-- Parts Section -->
-			<section class="parts-section">
-				<img src="images/bannar1.png" alt="border" class="caption-image" />
-				<div class="parts-container">
-					<div class="parts-card parts-card-1" onclick="selectCategory('مقبلات')">
-						<button>مقبلات</button>
-					</div>
-					<div class="parts-card parts-card-2" onclick="selectCategory('لحوم')">
-						<button>لحوم</button>
-					</div>
-					<div class="parts-card parts-card-3" onclick="selectCategory('دواجن')">
-						<button>دواجن</button>
-					</div>
-					<div class="parts-card parts-card-4" onclick="selectCategory('فطائر')">
-						<button>فطائر</button>
-					</div>
-					<div class="parts-card parts-card-4" onclick="selectCategory('فطائر')">
-						<button>فطائر</button>
-					</div>
-				</div>
-			</section>
+      <div class="food-slider">
+        <video
+          class="hero-video"
+          src="videos/foods_slideshow.mp4"
+          autoplay
+          loop
+          muted
+          playsinline
+          style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px"
+        ></video>
+      </div>
 
-			<img src="images/banner5.png" class="caption-image" alt="" />
+	  <div class="hero-content">
+        <h1 class="hero-title">
+          مذاق النبلاء .... <br />
+          كل وجبة حكاية من التميز
+        </h1>
+      </div>
+    </section>
 
-			<!-- Products Section -->
-			<div class="products-container" id="products-section">
-				<!-- Products will be rendered here by JavaScript -->
-			</div>
-		</section>
+    <!-- Content Section -->
+    <section class="content">
+      <!-- Parts Section -->
+      <section class="parts-section">
+        <img src="images/bannar1.png" alt="border" class="caption-image" />
+        <div class="parts-container">
+          <div class="parts-card parts-card-1" onclick="selectCategory('مقبلات')">
+            <button>مقبلات</button>
+          </div>
+          <div class="parts-card parts-card-2" onclick="selectCategory('لحوم')">
+            <button>لحوم</button>
+          </div>
+          <div class="parts-card parts-card-3" onclick="selectCategory('دواجن')">
+            <button>دواجن</button>
+          </div>
+          <div class="parts-card parts-card-4" onclick="selectCategory('فطائر')">
+            <button>فطائر</button>
+          </div>
+          <div class="parts-card parts-card-4" onclick="selectCategory('فطائر')">
+            <button>فطائر</button>
+          </div>
+		    <div class="parts-card parts-card-2" onclick="selectCategory('لحوم')">
+            <button>لحوم</button>
+          </div>
+        </div>
+      </section>
 
-		<!-- Footer Component -->
-		<div id="footer-container"></div>
+      <img src="images/banner5.png" class="caption-image" alt="" />
 
-		<!-- JavaScript Files -->
-		<script src="../cart/cart.js"></script>
-		<script src="../utils/utils.js"></script>
-		<script src="../shared/navbar/navbar.js"></script>
-		<script src="food.js"></script>
-		<script src="../utils/main.js"></script>
-      	<script src="../shared/navbar/navbar-loader.js"></script>
-		<script src="../shared/footer/footer.js"></script>
-		<script>
-			// Update current year
-			document.getElementById('current-year').textContent = new Date().getFullYear();
-		</script>
-	</body>
+      <!-- Products Section -->
+      <div class="products-container" id="products-section">
+        <!-- Products will be rendered here by JavaScript -->
+      </div>
+    </section>
+
+    <!-- Footer Component -->
+    <div id="footer-container"></div>
+
+    <!-- JavaScript Files -->
+    <script src="../cart/cart.js"></script>
+    <script src="../utils/utils.js"></script>
+    <script src="../shared/navbar/navbar.js"></script>
+    <script src="food.js"></script>
+    <script src="../utils/main.js"></script>
+    <script src="../shared/navbar/navbar-loader.js"></script>
+    <script src="../shared/footer/footer.js"></script>
+    <script>
+      // Update current year
+      document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+  </body>
 </html>
