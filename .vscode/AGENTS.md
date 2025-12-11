@@ -29,7 +29,9 @@
 
 The project follows a **modular structure** where each page and shared component has its own dedicated folder containing all related files (HTML, CSS, JS, images, videos).
 
-**Page Modules:**
+**Page Modules (Main Pages Only):**
+
+The project contains **6 main pages**:
 
 ```
 home/
@@ -53,13 +55,6 @@ food/
   ├── food.js          # Food page JavaScript
   └── food.css         # Food page styles
 
-special-orders/
-  ├── images/          # Special orders page images
-  ├── videos/          # Special orders page videos
-  ├── special-orders.html
-  ├── special-orders.js
-  └── special-orders.css
-
 contact/
   ├── images/          # Contact page images
   ├── videos/          # Contact page videos
@@ -73,36 +68,43 @@ orders/
   ├── orders.html
   ├── orders.js
   └── orders.css
+
+cart/
+  ├── images/          # Cart page images (if any)
+  ├── videos/          # Cart page videos (if any)
+  ├── cart.html        # Cart page HTML (if exists)
+  ├── cart.js          # Cart page JavaScript (if exists)
+  └── cart.css         # Cart page styles (if exists)
 ```
 
 **Shared Components:**
 
 ```
-navbar/
-  ├── images/          # Navbar images (logos, icons)
-  ├── navbar.html      # Navbar HTML component
-  ├── navbar.js        # Navbar JavaScript
-  └── navbar.css       # Navbar styles
-
-footer/
-  ├── footer.html      # Footer HTML component
-  └── footer.css       # Footer styles
+shared/
+  ├── navbar/
+  │   ├── images/          # Navbar images (logos, icons)
+  │   ├── navbar.html      # Navbar HTML component
+  │   ├── navbar.js        # Navbar JavaScript
+  │   └── navbar.css       # Navbar styles
+  ├── footer/
+  │   ├── footer.html      # Footer HTML component
+  │   └── footer.css       # Footer styles
+  └── main.css             # Common shared styles (fonts, reset, etc.)
 
 cart/
-  └── cart.js          # Cart management functions
+  └── cart.js              # Cart management functions
 
 utils/
-  ├── utils.js         # Utility functions (location modal, etc.)
-  └── main.js          # Main initialization script
-
-shared/
-  └── main.css         # Common shared styles (fonts, reset, etc.)
+  ├── utils.js             # Utility functions (location modal, etc.)
+  └── main.js              # Main initialization script
 ```
 
 **Root Files:**
 
--   `index.html` - Redirects to `home/home.html`
+-   `index.html` - **Router only**: Redirects to `home/home.html` (no content, just routing)
 -   `favicon.ico` - Site favicon
+
+**Important:** `index.html` is **NOT a page** - it's a simple router that redirects to the home page. All actual pages are in their respective module folders.
 
 ### 1.2. Path Conventions
 
@@ -119,7 +121,7 @@ shared/
 **Path Rules:**
 
 -   Page-specific assets: Use relative paths from page folder (e.g., `images/logo.png`)
--   Shared components: Use `../` to go up one level (e.g., `../navbar/navbar.css`)
+-   Shared components: Use `../shared/` to access shared components (e.g., `../shared/navbar/navbar.css`, `../shared/footer/footer.css`)
 -   Cross-page links: Use relative paths (e.g., `../sweets/sweets.html`)
 
 ### 1.3. Page Structure
@@ -154,9 +156,9 @@ Each HTML page includes:
 
 **Shared images (navbar):**
 
--   Location: `navbar/images/`
--   Path: `../navbar/images/[filename]`
--   Example: `../navbar/images/mazaq_alandalus_navbar.jpg`
+-   Location: `shared/navbar/images/`
+-   Path: `../shared/navbar/images/[filename]`
+-   Example: `../shared/navbar/images/mazaq_alandalus_navbar.jpg`
 
 **Never use absolute paths** - Always use relative paths from the current file location
 
@@ -183,9 +185,9 @@ Each HTML page includes:
 **Shared CSS:**
 
 -   `shared/main.css` - Common styles (fonts, reset, location modal)
--   `navbar/navbar.css` - Navigation bar styles
--   `footer/footer.css` - Footer styles
--   Linked as: `<link rel="stylesheet" href="../shared/main.css" />`
+-   `shared/navbar/navbar.css` - Navigation bar styles
+-   `shared/footer/footer.css` - Footer styles
+-   Linked as: `<link rel="stylesheet" href="../shared/main.css" />`, `<link rel="stylesheet" href="../shared/navbar/navbar.css" />`
 
 **Responsive breakpoints:**
 
@@ -208,8 +210,8 @@ Each HTML page includes:
 -   `cart/cart.js` - Cart management functions
 -   `utils/utils.js` - Utility functions (location modal, navigation)
 -   `utils/main.js` - Main initialization
--   `navbar/navbar.js` - Navbar functionality
--   Linked as: `<script src="../cart/cart.js"></script>`
+-   `shared/navbar/navbar.js` - Navbar functionality
+-   Linked as: `<script src="../cart/cart.js"></script>`, `<script src="../shared/navbar/navbar.js"></script>`
 
 **No ES6 modules** - All scripts are loaded via `<script>` tags, functions are global
 
@@ -279,10 +281,11 @@ Each HTML page includes:
 1. Create new module folder: `[page-name]/`
 2. Create subfolders: `images/`, `videos/`
 3. Create files: `[page-name].html`, `[page-name].js`, `[page-name].css`
-4. Link shared CSS: `../shared/main.css`, `../navbar/navbar.css`, `../footer/footer.css`
-5. Link shared JS: `../cart/cart.js`, `../utils/utils.js`, `../navbar/navbar.js`, `../utils/main.js`
+4. Link shared CSS: `../shared/main.css`, `../shared/navbar/navbar.css`, `../shared/footer/footer.css`
+5. Link shared JS: `../cart/cart.js`, `../utils/utils.js`, `../shared/navbar/navbar.js`, `../utils/main.js`
 6. Update navbar links in all pages to include new page
 7. Update `utils/utils.js` public pages array if needed
+8. **Do NOT modify `index.html`** - it's a router only, redirects to home
 
 ### 6.3. Cache Busting
 
@@ -325,10 +328,10 @@ Each HTML page includes:
 
 1. Add file to appropriate folder:
     - Page-specific: `[page]/images/` or `[page]/videos/`
-    - Shared (navbar): `navbar/images/`
+    - Shared (navbar): `shared/navbar/images/`
 2. Use relative path in HTML/JS:
     - Page-specific: `images/[filename]` or `videos/[filename]`
-    - Shared: `../navbar/images/[filename]`
+    - Shared: `../shared/navbar/images/[filename]`
 
 ## 8. DEBUGGING & TROUBLESHOOTING 🐛
 
@@ -396,26 +399,30 @@ When working on this project, apply these principles:
 
 ## Module Reference Quick Guide
 
-**Page Modules:**
+**Page Modules (6 Main Pages Only):**
 
 -   `home/` - Home page
 -   `sweets/` - Sweets restaurant page
 -   `food/` - Food restaurant page
--   `special-orders/` - Special orders page
 -   `contact/` - Contact page
 -   `orders/` - Shopping cart page
+-   `cart/` - Cart page (if exists)
 
 **Shared Components:**
 
--   `navbar/` - Navigation bar (images, HTML, JS, CSS)
--   `footer/` - Footer (HTML, CSS)
--   `cart/` - Cart management (JS)
+-   `shared/navbar/` - Navigation bar (images, HTML, JS, CSS)
+-   `shared/footer/` - Footer (HTML, CSS)
+-   `shared/main.css` - Common shared styles
+-   `cart/` - Cart management functions (JS)
 -   `utils/` - Utilities and main init (JS)
--   `shared/` - Shared styles (CSS)
+
+**Root Router:**
+
+-   `index.html` - **Router only**: Redirects to `home/home.html` (no content, just routing)
 
 **Path Examples:**
 
 -   From `sweets/sweets.html` to `food/food.html`: `../food/food.html`
--   From `sweets/sweets.html` to `navbar/navbar.css`: `../navbar/navbar.css`
+-   From `sweets/sweets.html` to `shared/navbar/navbar.css`: `../shared/navbar/navbar.css`
 -   From `sweets/sweets.html` to local image: `images/banner4.png`
--   From `sweets/sweets.html` to navbar image: `../navbar/images/cart.png`
+-   From `sweets/sweets.html` to navbar image: `../shared/navbar/images/cart.png`
