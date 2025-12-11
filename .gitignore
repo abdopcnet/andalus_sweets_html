@@ -7,3 +7,6 @@ node_modules
 dist
 __pycache__
 plan.md
+# Media
+*.mp4
+*.mov
