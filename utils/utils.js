@@ -102,7 +102,7 @@ function initLocationModal() {
 		'/home/home.html',
 		'/food/food.html',
 		'/sweets/sweets.html',
-		'/contact.html',
+		'/contact/contact.html',
 		'/special-orders/special-orders.html',
 	];
 
