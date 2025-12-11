@@ -56,7 +56,7 @@ function renderCartItems() {
       `../sweets/${rawPath}`,
       `/${rawPath}`,
       `../${rawPath}`,
-      '../navbar/mazaq_alandalus_navbar.jpg'
+      '../shared/navbar/images/mazaq_alandalus_navbar.jpg'
     ].filter(Boolean);
 
     let tryIndex = 0;
