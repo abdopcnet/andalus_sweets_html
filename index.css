@@ -493,8 +493,23 @@ body {
 .footer-social {
 	margin-top: 15px;
 	display: flex;
-	gap: 45px;
-	flex-wrap: wrap;
+	gap: 15px;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.footer-social a {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+}
+
+.footer-social img {
+	width: auto;
+	height: 4vh;
+	object-fit: contain;
 }
 
 /* Branches and Map Section */
@@ -512,11 +527,14 @@ body {
 
 .branch-item {
 	background: rgba(255, 255, 255, 0.1);
-	padding: 8px;
+	padding: 6px 8px;
 	border-radius: 10px;
 	display: flex;
+	align-items: center;
+	justify-content: space-between;
 	transition: transform 0.3s ease, background 0.3s ease;
-	gap: 2rem;
+	gap: 1rem;
+	direction: rtl;
 }
 
 .branch-item:hover {
@@ -526,14 +544,37 @@ body {
 
 .branch-item h4 {
 	font-size: 1rem;
-	margin-bottom: 5px;
+	margin: 0;
 	color: #fffbe5;
+	order: 1;
 }
 
 .branch-item p {
-	display: contents;
 	font-size: 1rem;
 	font-family: cursive;
+	margin: 0;
+	color: #fffbe5;
+	order: 2;
+}
+
+.branch-item a {
+	flex-shrink: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-decoration: none;
+	transition: transform 0.3s ease;
+	order: 3;
+}
+
+.branch-item a:hover {
+	transform: scale(1.1);
+}
+
+.branch-item img {
+	width: auto;
+	height: 4vh;
+	object-fit: contain;
 }
 
 /* Map Box */
@@ -603,7 +644,7 @@ body {
 		font-size: 0.95rem;
 	}
 	.branch-item {
-		padding: 12px;
+		padding: 8px;
 	}
 	.branch-item:hover {
 		transform: translateY(-3px);
@@ -634,7 +675,7 @@ body {
 		margin-left: 6px;
 	}
 	.branch-item {
-		padding: 10px;
+		padding: 6px;
 	}
 	.branch-item h4 {
 		font-size: 1.05rem;
