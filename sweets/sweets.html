@@ -8,39 +8,19 @@
 		<meta http-equiv="Pragma" content="no-cache" />
 		<meta http-equiv="Expires" content="0" />
 		<title>مذاق الأندلس للحلويات</title>
-		<!-- Local fonts only -->
+
+		<!-- Local styles -->
 		<link rel="stylesheet" />
 		<link rel="stylesheet" href="../shared/main.css" />
 		<link rel="stylesheet" href="../shared/navbar/navbar.css" />
 		<link rel="stylesheet" href="../shared/footer/footer.css" />
 		<link rel="stylesheet" href="sweets.css" />
 	</head>
-	<body>
-		<!-- Navbar Component -->
+	<body class="sweets-restaurant">
+		<!-- Navbar -->
 		<div id="navbar-container"></div>
-		<!-- Location Modal -->
-		<div id="location-modal" class="modal-overlay" style="display: none">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h2>اختر موقعك</h2>
-					<button class="close-btn" id="close-location-modal">&times;</button>
-				</div>
-				<div class="modal-body">
-					<select id="branch-select" class="form-control">
-						<option value="">اختر الفرع</option>
-						<option value="khudraa">فرع الخضراء</option>
-						<option value="nawaria">فرع النوارية</option>
-						<option value="sharai">فرع الشرائع</option>
-						<option value="sitteen">فرع الستين</option>
-						<option value="awali">فرع العوالي</option>
-					</select>
-					<button id="get-location-btn" class="location-btn">📍 موقعي الحالي</button>
-					<button id="confirm-location-btn" class="confirm-btn">تأكيد</button>
-				</div>
-			</div>
-		</div>
 
-		<!-- Hero Section -->
+		<!-- Hero -->
 		<section class="hero-section">
 			<div class="food-slider">
 				<video
@@ -50,26 +30,19 @@
 					loop
 					muted
 					playsinline
-					style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px"
 				></video>
 			</div>
 			<div class="hero-content">
 				<h1 class="hero-title">
-					حلويات الاندلس .... <br />
-					لحظات من الحلا و السعادة
+					حلويات الأندلس .... <br />
+					لحظات من الحلا والسعادة
 				</h1>
-				<a href="#pruducts-section">
-					<button class="order-button order-button--fixed">
-						اطلب الآن
-						<img src="../shared/navbar/images/cart.png" alt="" />
-					</button>
-				</a>
 			</div>
 		</section>
 
-		<!-- Content Section -->
+		<!-- Content -->
 		<section class="content">
-			<!-- Parts Section -->
+			<!-- Parts -->
 			<section class="parts-section">
 				<img src="images/banner4.png" alt="border" class="caption-image" />
 				<div class="parts-container">
@@ -85,29 +58,35 @@
 					<div class="parts-card parts-card-4" onclick="selectCategory('كنافة')">
 						<button>كنافة</button>
 					</div>
+					<div class="parts-card parts-card-4" onclick="selectCategory('كنافة')">
+						<button>كنافة</button>
+					</div>
+					<div class="parts-card parts-card-2" onclick="selectCategory('كيك')">
+						<button>كيك</button>
+					</div>
 				</div>
 			</section>
 
 			<img src="images/banner4.png" class="caption-image" alt="" />
 
-			<!-- Products Section -->
-			<div class="products-container" id="pruducts-section">
-				<!-- Products will be rendered here by JavaScript -->
+			<!-- Products -->
+			<div class="products-container" id="products-section">
+				<!-- تملأ من sweets.js -->
 			</div>
 		</section>
 
-		<!-- Footer Component -->
-			<div id="footer-container"></div>
-				<script src="../shared/navbar/navbar-loader.js"></script>
-	   		    <script src="../shared/footer/footer.js"></script>
-		<!-- JavaScript Files -->
+		<!-- Footer -->
+		<div id="footer-container"></div>
+
+		<!-- Scripts -->
+		<script src="../shared/navbar/navbar-loader.js"></script>
+		<script src="../shared/footer/footer.js"></script>
 		<script src="../cart/cart.js"></script>
 		<script src="../utils/utils.js"></script>
-		<script src="../shared/navbar/navbar.js"></script>
+		<!-- <script src="../shared/navbar/navbar.js"></script> -->
 		<script src="sweets.js"></script>
 		<script src="../utils/main.js"></script>
 		<script>
-			// Update current year
 			document.getElementById('current-year').textContent = new Date().getFullYear();
 		</script>
 	</body>

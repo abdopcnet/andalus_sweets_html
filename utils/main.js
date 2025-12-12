@@ -20,6 +20,11 @@ document.addEventListener('DOMContentLoaded', () => {
 		initLocationModal();
 	}
 
+	// Initialize FAB (Floating Action Buttons)
+	if (typeof initFAB === 'function') {
+		initFAB();
+	}
+
 	// Listen for cart updates from cart.js
 	// Note: updateCartUI is already called in cart.js before dispatching the event
 	// This event is for product cards and other components to update their UI

@@ -56,7 +56,14 @@ function confirmLocation() {
 		localStorage.setItem('userLocation', select.value);
 		hideLocationModal();
 		alert('تم اختيار الفرع: ' + select.value);
-		// Reload page to apply location-based restrictions
+		// If there's a pending redirect (user tried to checkout), continue it
+		const pending = localStorage.getItem('pendingRedirect');
+		if (pending) {
+			localStorage.removeItem('pendingRedirect');
+			window.location.href = pending;
+			return;
+		}
+		// Otherwise reload to apply location-based behavior
 		window.location.reload();
 	} else {
 		alert('الرجاء اختيار فرع');
@@ -93,23 +100,26 @@ function initLocationModal() {
 		confirmBtn.addEventListener('click', confirmLocation);
 	}
 
-	// Check if user needs to set location
-	const userLocation = localStorage.getItem('userLocation');
-	const currentPath = window.location.pathname;
-	const publicPages = [
-		'/',
-		'/index.html',
-		'/home/home.html',
-		'/food/food.html',
-		'/sweets/sweets.html',
-		'/contact/contact.html',
-		'/special-orders/special-orders.html',
-	];
-
-	if (!userLocation && !publicPages.includes(currentPath)) {
-		// Show modal if location not set and not on public page
-		showLocationModal();
-	}
+	// Do NOT auto-show location modal anymore. Instead, show it only when
+	// the user initiates an order (clicks a checkout button).
+	// Intercept checkout links/buttons to require location first.
+	const checkoutButtons = document.querySelectorAll('.checkout-btn');
+	checkoutButtons.forEach((btn) => {
+		btn.addEventListener('click', function (e) {
+			const userLocation = localStorage.getItem('userLocation');
+			const href = this.getAttribute('href') || this.dataset.href;
+			if (!userLocation) {
+				// prevent navigation and show modal; remember where to go
+				e.preventDefault();
+				if (href) {
+					localStorage.setItem('pendingRedirect', href);
+				}
+				showLocationModal();
+			} else {
+				// allow default navigation
+			}
+		});
+	});
 }
 
 // Navigation Helpers

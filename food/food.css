@@ -395,7 +395,7 @@ hr {
   display: inline-block;
   backdrop-filter: blur(4px);
 }
-
+شغال
 .add-to-cart-btn {
   background: #ffffff;
   color: #ff6f00;
@@ -752,7 +752,7 @@ hr {
   .parts-container {
     grid-template-columns: repeat(2, 1fr); /* keep 2 in a row */
   }
-}
+
   .parts-card {
     min-height: 240px;
     max-width: 400px;
