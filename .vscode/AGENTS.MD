@@ -29,107 +29,163 @@ alwaysApply: true
 
 ## 1. PROJECT STRUCTURE 📁
 
-### 1.1. Modular Directory Organization
+### 1.1. Flat Directory Organization
 
-The project follows a **modular structure** where each page has its own dedicated folder containing all related files (HTML, CSS, JS, images, videos). Shared functionality is centralized in root files.
+The project follows a **flat structure** where all HTML pages are in the root directory, with organized folders for CSS, JavaScript, and assets.
 
-**Page Modules (6 Main Pages):**
-
-```
-index.html          # Home page (NOT a router - actual page content)
-index.css           # Shared CSS (fonts, navbar, footer, cart, location modal)
-index.js            # Shared JavaScript (cart, location modal, navbar/footer loading)
-
-sweets/
-  ├── images/          # Sweets page images
-  ├── videos/          # Sweets page videos
-  ├── sweets.html      # Sweets page HTML
-  ├── sweets.js        # Sweets page JavaScript
-  └── sweets.css       # Sweets page styles
-
-food/
-  ├── images/          # Food page images
-  ├── videos/          # Food page videos
-  ├── food.html        # Food page HTML
-  ├── food.js          # Food page JavaScript
-  └── food.css         # Food page styles
-
-contact/
-  ├── images/          # Contact page images
-  ├── contact.html
-  ├── contact.js
-  └── contact.css
-
-orders/
-  ├── orders.html      # Shopping cart/orders page
-  ├── orders.js
-  └── orders.css
-
-special-orders/
-  ├── special-orders.html
-  ├── special-orders.js
-  └── special-orders.css
-```
-
-**Shared Components:**
+**Project Structure:**
 
 ```
-shared/
-  ├── navbar/
-  │   ├── images/          # Navbar images (logos, icons)
-  │   └── navbar.html      # Navbar HTML component (no separate CSS/JS)
-  ├── footer/
-  │   └── footer.html      # Footer HTML component (no separate CSS/JS)
-  └── fonts/
-      └── dg-kufi.ttf      # Custom Arabic font
-
-images/              # Root-level shared images (home page images)
+/
+├── index.html              # Home page
+├── food.html               # Food page
+├── sweets.html             # Sweets page
+├── orders.html             # Shopping cart/orders page
+├── special-orders.html     # Special orders page
+├── navbar.html             # Navbar component
+├── footer.html             # Footer component
+│
+├── css/
+│   └── index.css           # All shared CSS (fonts, navbar, footer, cart, etc.)
+│
+├── js/
+│   ├── index.js            # Shared JavaScript (cart, navbar/footer loading)
+│   └── api_mapper.js       # API integration
+│
+└── assets/
+    ├── fonts/
+    │   └── dg-kufi.ttf     # Custom Arabic font
+    └── images/             # All images (shared and page-specific)
+        ├── favicon.ico
+        ├── cart.png
+        ├── food1.png
+        ├── cake.jpg
+        └── ... (all images)
 ```
 
-**Root Files:**
+**File Organization:**
 
--   `index.html` - **Home page** (actual page content, not a router)
--   `index.css` - **All shared CSS** (fonts, navbar, footer, cart, location modal, common styles)
--   `index.js` - **All shared JavaScript** (cart functions, location modal, navbar/footer loading, initialization)
--   `favicon.ico` - Site favicon
+-   **HTML files**: All in root directory (flat structure)
+-   **CSS files**: All in `css/` folder (`css/index.css`)
+-   **JavaScript files**: All in `js/` folder (`js/index.js`, `js/api_mapper.js`)
+-   **Assets**: All in `assets/` folder (`assets/fonts/`, `assets/images/`)
 
 **Important:**
 
--   `index.html` IS the home page with actual content
--   All shared JavaScript is in `index.js` (cart, location modal, navbar/footer loading)
--   All shared CSS is in `index.css` (no separate `shared/main.css`)
--   No separate `cart/` or `utils/` folders - everything is in root `index.js`
+-   All HTML pages are in root directory (not in subfolders)
+-   Shared CSS is in `css/index.css`
+-   Shared JavaScript is in `js/index.js`
+-   All images are in `assets/images/` (no separate page-specific image folders)
+-   Navbar and footer are separate HTML files in root (`navbar.html`, `footer.html`)
 
 ### 1.2. Path Conventions
 
-**Relative Paths:**
+**Relative Paths (from root directory):**
 
--   Each page uses **relative paths** to reference shared components
--   Shared components use relative paths to reference each other
--   Example from `sweets/sweets.html`:
-    -   CSS: `../index.css`, `sweets.css`
-    -   JS: `../index.js`, `sweets.js`
-    -   Images: `images/` (local), `../shared/navbar/images/` (shared)
-    -   Pages: `../food/food.html`, `../contact/contact.html`
+Since all HTML files are in the root directory, paths are simpler:
+
+**CSS Files:**
+
+-   Shared CSS: `css/index.css`
+-   Example: `<link rel="stylesheet" href="css/index.css" />`
+
+**JavaScript Files:**
+
+-   Shared JS: `js/index.js`
+-   API Mapper: `js/api_mapper.js`
+-   Example: `<script src="js/index.js"></script>`
+
+**Images:**
+
+-   All images: `assets/images/[filename]`
+-   Example: `<img src="assets/images/cake.jpg" alt="..." />`
+
+**HTML Pages:**
+
+-   All pages in root: `food.html`, `sweets.html`, `orders.html`, etc.
+-   Example: `<a href="food.html">Food</a>`
+
+**Components:**
+
+-   Navbar: `navbar.html`
+-   Footer: `footer.html`
 
 **Path Rules:**
 
--   Page-specific assets: Use relative paths from page folder (e.g., `images/logo.png`)
--   Shared components: Use `../shared/` to access shared components (e.g., `../shared/navbar/navbar.html`, `../shared/footer/footer.html`)
--   Shared CSS/JS: Use `../index.css` and `../index.js` from page folders
--   Cross-page links: Use relative paths (e.g., `../sweets/sweets.html`)
--   Root page (index.html): Use `shared/navbar/navbar.html` (no `../`)
+-   All paths are relative to root directory (no `../` needed for shared files)
+-   CSS: Always use `css/index.css`
+-   JavaScript: Always use `js/index.js`, `js/api_mapper.js`
+-   Images: Always use `assets/images/[filename]`
+-   Pages: Direct references (e.g., `food.html`, `sweets.html`)
 
-### 1.3. Page Structure
+### 1.3. HTML Structure (STRICT)
 
-Each HTML page includes:
+**All HTML files MUST follow this exact structure:**
 
--   Navbar (loaded dynamically via `index.js` into `#navbar-container`)
--   Location Modal (defined in `index.css`, handled by `index.js`)
--   Page-specific content
--   Footer (loaded dynamically via `index.js` into `#footer-container`)
--   Page-specific CSS and JS files
--   Shared CSS (`../index.css`) and JS (`../index.js`) files
+```html
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+	<head>
+		<!-- 1. Meta charset (REQUIRED) -->
+		<meta charset="UTF-8" />
+
+		<!-- 2. Meta viewport (REQUIRED) -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<!-- 3. Title (REQUIRED) -->
+		<title>Page Title</title>
+
+		<!-- 4. External CSS files (REQUIRED) -->
+		<link rel="stylesheet" href="css/index.css" />
+		<!-- Additional external CSS files here -->
+
+		<!-- 5. Internal CSS (OPTIONAL - only if page-specific styles needed) -->
+		<style>
+			/* Page-specific styles only */
+		</style>
+	</head>
+	<body>
+		<!-- Visible page content (div, p, section, etc.) -->
+		<div id="navbar-container"></div>
+		<!-- Page content here -->
+		<div id="footer-container"></div>
+
+		<!-- JavaScript (REQUIRED - at the end of body) -->
+		<script src="js/index.js"></script>
+		<!-- Additional external JS files here -->
+		<script>
+			/* Page-specific JavaScript */
+		</script>
+	</body>
+</html>
+```
+
+**Structure Rules:**
+
+1. **`<head>` section order (STRICT):**
+
+    - `meta charset` → `meta viewport` → `title` → `link` (external CSS) → `style` (internal CSS, optional)
+
+2. **`<body>` section order (STRICT):**
+
+    - Visible content (HTML elements) → `script` tags (at the end)
+
+3. **CSS placement:**
+
+    - External CSS: Use `<link>` tags in `<head>`
+    - Internal CSS: Use `<style>` tag in `<head>` (only for page-specific styles)
+    - **NEVER** place `<style>` after `</head>` or in `<body>`
+
+4. **JavaScript placement:**
+
+    - **ALWAYS** at the end of `<body>`, before `</body>`
+    - External JS files first, then inline `<script>` tags
+    - **NEVER** place `<script>` in `<head>` (except for special cases like analytics)
+
+5. **Page components:**
+    - Navbar: `<div id="navbar-container"></div>` (loaded dynamically)
+    - Footer: `<div id="footer-container"></div>` (loaded dynamically)
+    - Page-specific content between navbar and footer
 
 ## 2. CODE ANALYSIS PRINCIPLES 🧭
 
@@ -145,24 +201,12 @@ Each HTML page includes:
 
 ### 3.1. Image Paths
 
-**Page-specific images:**
+**All images:**
 
--   Location: `[page]/images/`
--   Path in HTML/JS: `images/[filename]`
--   Example: `sweets/images/banner4.png` → `images/banner4.png` in `sweets.html`
-
-**Shared images (navbar):**
-
--   Location: `shared/navbar/images/`
--   Path: `../shared/navbar/images/[filename]` (from page folders)
--   Path: `shared/navbar/images/[filename]` (from root index.html)
--   Example: `../shared/navbar/images/mazaq_alandalus_navbar.jpg`
-
-**Root-level shared images:**
-
--   Location: `images/` (root folder)
--   Path: `images/[filename]` (from root index.html)
--   Example: `images/elandalus.jpg` in `index.html`
+-   Location: `assets/images/` (all images in one folder)
+-   Path in HTML/JS: `assets/images/[filename]`
+-   Example: `assets/images/cake.jpg`, `assets/images/food1.png`
+-   No separate folders for page-specific images - all images are in `assets/images/`
 
 **Never use absolute paths** - Always use relative paths from the current file location
 
@@ -209,61 +253,109 @@ Each HTML page includes:
 
 **Page-specific JavaScript:**
 
--   Location: `[page]/[page].js`
+-   Location: Inline `<script>` tags at end of each HTML file
 -   Contains page-specific logic (product rendering, form handling, etc.)
--   Linked as: `<script src="[page].js"></script>`
+-   Placed directly in HTML files (not separate `.js` files)
 
 **Shared JavaScript:**
 
--   `index.js` - **All shared functionality**:
+-   `js/index.js` - **All shared functionality**:
     -   Cart management functions (`loadCart()`, `saveCart()`, `addToCart()`, `removeFromCart()`, `getCartCount()`, `updateCartUI()`, etc.)
     -   Location modal functions (`showLocationModal()`, `hideLocationModal()`, `confirmLocation()`, `initLocationModal()`)
     -   Navbar loader (`loadNavbar()`, `initializeNavbar()`)
     -   Footer loader (`loadFooter()`)
     -   Main initialization (`DOMContentLoaded` handler)
--   Linked as: `<script src="../index.js"></script>` (from page folders)
--   Linked as: `<script src="index.js"></script>` (from root index.html)
+-   Linked as: `<script src="js/index.js"></script>` (from all HTML files)
+
+-   `js/api_mapper.js` - **API integration**:
+    -   Frappe/ERPNext API connection
+    -   Customer and sales order functions
+-   Linked as: `<script src="js/api_mapper.js"></script>` (where needed)
 
 **No ES6 modules** - All scripts are loaded via `<script>` tags, functions are global
 
-### 4.2. Cart Management
+### 4.2. JavaScript Placement (STRICT)
+
+**JavaScript MUST be placed at the end of `<body>`:**
+
+```html
+<body>
+	<!-- HTML content -->
+
+	<!-- External JS files first -->
+	<script src="../index.js"></script>
+	<script src="../api_mapper.js"></script>
+
+	<!-- Inline JavaScript last -->
+	<script>
+		// Page-specific JavaScript
+		document.addEventListener('DOMContentLoaded', () => {
+			// Initialization code
+		});
+	</script>
+</body>
+```
+
+**Rules:**
+
+-   **ALWAYS** place `<script>` tags at the end of `<body>`, before `</body>`
+-   External JS files first, then inline `<script>` tags
+-   **NEVER** place `<script>` in `<head>` (except for special cases like analytics)
+-   Use `DOMContentLoaded` event for initialization
+
+### 4.3. Cart Management
 
 -   Cart stored in `localStorage.getItem("cart")`
 -   Functions in `index.js`: `addToCart()`, `removeFromCart()`, `getCartCount()`, `updateCartUI()`, etc.
 -   Cart updates trigger `window.dispatchEvent(new Event("cartUpdated"))`
 -   All pages import `index.js` via relative path
 
-### 4.3. Location Management
+### 4.4. Location Management
 
 -   Location stored in `localStorage.getItem("userLocation")`
 -   Location modal functions in `index.js`
 -   Public pages (don't require location): Home (index.html), Food, Sweets, Contact, SpecialOrders
 -   Location modal HTML is defined in `index.css` (modal styles)
 
-### 4.4. DOM Manipulation
+### 4.5. DOM Manipulation
 
 -   Use `document.addEventListener("DOMContentLoaded", ...)` for initialization
 -   Use `querySelector()` and `querySelectorAll()` for element selection
 -   Use `addEventListener()` for event handling
 
-### 4.5. Image Paths in JavaScript
+### 4.6. Image Paths in JavaScript
 
--   Page-specific images: `images/[filename]` (relative to page folder)
--   Update product data arrays in page JS files to use relative paths
--   Example in `sweets/sweets.js`: `image: "images/cake.jpg"`
+-   All images: `assets/images/[filename]` (from root directory)
+-   Update product data arrays in inline scripts to use correct paths
+-   Example: `image: "assets/images/cake.jpg"`
 
 ## 5. STYLING GUIDELINES 🎨
 
 ### 5.1. CSS Organization
 
--   Page-specific styles in `[page]/[page].css`
--   Common styles in `index.css` (no separate `shared/main.css`)
--   No scoped attributes - plain CSS classes
--   Responsive breakpoints:
-    -   Desktop: `min-width: 769px`
-    -   Tablet: `max-width: 768px`
-    -   Mobile: `max-width: 480px`
--   Use RTL (right-to-left) for Arabic content
+**CSS Placement Rules:**
+
+1. **External CSS files:**
+
+    - Shared CSS: `css/index.css` (linked in `<head>`)
+    - Page-specific CSS: Inline in `<style>` tag (no separate CSS files)
+    - Use `<link rel="stylesheet" href="css/index.css">` in `<head>`
+
+2. **Internal CSS (inline in HTML):**
+
+    - Use `<style>` tag **inside `<head>`**, before `</head>`
+    - Only for page-specific styles
+    - **NEVER** place `<style>` after `</head>` or in `<body>`
+
+3. **CSS Structure:**
+    - Common styles in `css/index.css`
+    - Page-specific styles in inline `<style>` tags within each HTML file
+    - No scoped attributes - plain CSS classes
+    - Responsive breakpoints:
+        - Desktop: `min-width: 769px`
+        - Tablet: `max-width: 768px`
+        - Mobile: `max-width: 480px`
+    - Use RTL (right-to-left) for Arabic content
 
 ### 5.2. Color Scheme
 
@@ -273,7 +365,7 @@ Each HTML page includes:
 
 ### 5.3. Typography
 
--   Arabic font: `"Aref Ruqaa", serif` / `"DG Kufi"` (custom font from `shared/fonts/dg-kufi.ttf`)
+-   Arabic font: `"Aref Ruqaa", serif` / `"DG Kufi"` (custom font from `assets/fonts/dg-kufi.ttf`)
 -   English font: `"Cairo", "Segoe UI", sans-serif`
 
 ### 5.4. Direct Inline Styles Method
@@ -336,14 +428,17 @@ Each HTML page includes:
 
 ### 6.2. Adding New Page
 
-1. Create new module folder: `[page-name]/`
-2. Create subfolders: `images/`, `videos/` (if needed)
-3. Create files: `[page-name].html`, `[page-name].js`, `[page-name].css`
-4. Link shared CSS: `<link rel="stylesheet" href="../index.css" />`
-5. Link shared JS: `<script src="../index.js"></script>`
-6. Add navbar/footer containers: `<div id="navbar-container"></div>`, `<div id="footer-container"></div>`
-7. Update navbar links in `shared/navbar/navbar.html` to include new page
-8. **Do NOT modify `index.html`** - it's the home page, not a router
+1. Create new HTML file in root: `[page-name].html`
+2. Add images to `assets/images/` if needed
+3. Follow strict HTML structure:
+    - `<head>`: meta tags, title, link to `css/index.css`, optional `<style>` tag
+    - `<body>`: navbar container, page content, footer container, scripts
+4. Link shared CSS: `<link rel="stylesheet" href="css/index.css" />`
+5. Link shared JS: `<script src="js/index.js"></script>`
+6. Add page-specific JavaScript in inline `<script>` tag at end of body
+7. Add navbar/footer containers: `<div id="navbar-container"></div>`, `<div id="footer-container"></div>`
+8. Update navbar links in `navbar.html` to include new page
+9. **Do NOT modify `index.html`** - it's the home page, not a router
 
 ### 6.3. Cache Busting
 
@@ -362,37 +457,32 @@ Each HTML page includes:
 
 ### 7.1. Adding New Product
 
-1. Find product data array in page JS file (e.g., `sweets/sweets.js`)
+1. Find product data array in inline `<script>` tag of HTML file (e.g., `sweets.html`)
 2. Add product object with: `id`, `name`, `price`, `category`, `image`
-3. Use relative image path: `images/[filename]` (relative to page folder)
+3. Use image path: `assets/images/[filename]`
 4. Update render function if needed
-5. Add product image to `[page]/images/` folder
+5. Add product image to `assets/images/` folder
 
 ### 7.2. Updating Page Styles
 
-1. Find page-specific CSS file: `[page]/[page].css`
-2. Add/modify CSS rules
+1. Find page-specific CSS in inline `<style>` tag within HTML file
+2. Add/modify CSS rules in the `<style>` tag
 3. Test responsive breakpoints
 4. Add English comments above sections
 
 ### 7.3. Updating Shared Component
 
-1. **Navbar/Footer**: Edit `shared/navbar/navbar.html` or `shared/footer/footer.html`
-2. **Shared CSS**: Edit `index.css`
-3. **Shared JS**: Edit `index.js` (cart, location modal, navbar/footer loading)
+1. **Navbar/Footer**: Edit `navbar.html` or `footer.html` (in root directory)
+2. **Shared CSS**: Edit `css/index.css`
+3. **Shared JS**: Edit `js/index.js` (cart, location modal, navbar/footer loading)
 4. Changes affect all pages using the component
 5. Test across multiple pages
 
 ### 7.4. Adding New Image/Video
 
-1. Add file to appropriate folder:
-    - Page-specific: `[page]/images/` or `[page]/videos/`
-    - Shared (navbar): `shared/navbar/images/`
-    - Root-level: `images/` or `videos/` (for home page)
-2. Use relative path in HTML/JS:
-    - Page-specific: `images/[filename]` or `videos/[filename]`
-    - Shared: `../shared/navbar/images/[filename]` (from page folders)
-    - Root-level: `images/[filename]` or `videos/[filename]` (from root)
+1. Add file to `assets/images/` folder (all images in one location)
+2. Use path in HTML/JS: `assets/images/[filename]`
+3. Example: `<img src="assets/images/cake.jpg" alt="..." />`
 
 ## 8. DEBUGGING & TROUBLESHOOTING 🐛
 
@@ -401,9 +491,9 @@ Each HTML page includes:
 -   **Images not loading**: Check relative path from current file location
 -   **Styles not applying**: Verify CSS file is linked correctly (check relative path)
 -   **JavaScript not working**: Check browser console for errors, verify script paths
--   **Links not working**: Verify relative path to target page (e.g., `../sweets/sweets.html`)
+-   **Links not working**: Verify path to target page (e.g., `sweets.html`, `food.html`)
 -   **Cache issues**: Clear browser cache or use incognito mode
--   **Navbar/Footer not loading**: Check `index.js` is loaded and `loadNavbar()`/`loadFooter()` are called
+-   **Navbar/Footer not loading**: Check `js/index.js` is loaded and `loadNavbar()`/`loadFooter()` are called
 
 ### 8.2. Path Debugging
 
@@ -446,11 +536,11 @@ Each HTML page includes:
 When working on this project, apply these principles:
 
 -   📢 **COMMUNICATION RULES** - Short English only, English comments above sections
--   📁 **PROJECT STRUCTURE** - Modular structure, each page in own folder, shared code in root files
+-   📁 **PROJECT STRUCTURE** - Flat structure, all HTML in root, CSS in `css/`, JS in `js/`, assets in `assets/`
 -   🧭 **CODE ANALYSIS PRINCIPLES** - Read actual files, understand vanilla JavaScript, check module location
--   📦 **ASSET MANAGEMENT** - Use relative paths, follow modular folder structure
+-   📦 **ASSET MANAGEMENT** - All images in `assets/images/`, all fonts in `assets/fonts/`
 -   ⚡ **JAVASCRIPT BEST PRACTICES** - Page-specific and shared modules, localStorage, DOM manipulation
--   🎨 **STYLING GUIDELINES** - Page-specific CSS, shared CSS in index.css, RTL layout, responsive breakpoints, direct inline styles method
+-   🎨 **STYLING GUIDELINES** - Page-specific CSS in inline `<style>`, shared CSS in `css/index.css`, RTL layout, responsive breakpoints
 -   🛠️ **DEVELOPMENT WORKFLOW** - Read before edit, identify module, verify relative paths
 -   🔧 **COMMON TASKS** - Follow modular patterns for products, pages, styles, components
 -   🐛 **DEBUGGING** - Check relative paths, console errors, cache, file locations
@@ -461,30 +551,99 @@ When working on this project, apply these principles:
 
 ## Module Reference Quick Guide
 
-**Page Modules (6 Main Pages):**
+**HTML Pages (in root directory):**
 
--   `index.html` - Home page (root)
--   `sweets/` - Sweets restaurant page
--   `food/` - Food restaurant page
--   `contact/` - Contact page
--   `orders/` - Shopping cart/orders page
--   `special-orders/` - Special orders page
+-   `index.html` - Home page
+-   `food.html` - Food restaurant page
+-   `sweets.html` - Sweets restaurant page
+-   `orders.html` - Shopping cart/orders page
+-   `special-orders.html` - Special orders page
+-   `navbar.html` - Navigation bar component
+-   `footer.html` - Footer component
 
-**Shared Components:**
+**Shared Files:**
 
--   `shared/navbar/` - Navigation bar (images, HTML)
--   `shared/footer/` - Footer (HTML)
--   `shared/fonts/` - Custom fonts
--   `index.css` - All shared CSS
--   `index.js` - All shared JavaScript (cart, location modal, navbar/footer loading)
+-   `css/index.css` - All shared CSS
+-   `js/index.js` - All shared JavaScript (cart, location modal, navbar/footer loading)
+-   `js/api_mapper.js` - API integration
+
+**Assets:**
+
+-   `assets/fonts/` - Custom fonts
+-   `assets/images/` - All images (shared and page-specific)
 
 **Path Examples:**
 
--   From `sweets/sweets.html` to `food/food.html`: `../food/food.html`
--   From `sweets/sweets.html` to shared CSS: `../index.css`
--   From `sweets/sweets.html` to shared JS: `../index.js`
--   From `sweets/sweets.html` to navbar image: `../shared/navbar/images/cart.png`
--   From `sweets/sweets.html` to local image: `images/banner4.png`
--   From `index.html` to navbar: `shared/navbar/navbar.html`
--   From `index.html` to shared CSS: `index.css`
--   From `index.html` to shared JS: `index.js`
+-   From any HTML file to another page: `food.html`, `sweets.html`, `orders.html`
+-   From any HTML file to shared CSS: `css/index.css`
+-   From any HTML file to shared JS: `js/index.js`, `js/api_mapper.js`
+-   From any HTML file to images: `assets/images/cake.jpg`
+-   From any HTML file to fonts: `assets/fonts/dg-kufi.ttf`
+
+---
+
+## 11. API INTEGRATION 🔌
+
+### 11.1. API Configuration
+
+**API Mapper:**
+
+-   Location: `js/api_mapper.js`
+-   Purpose: Connects frontend to Frappe/ERPNext backend API
+-   Functions:
+    -   `submitCartAsOrder(customerInfo)` - Submit cart as sales order
+    -   `create_customer_if_not_existed(mobile_no, customer_name, email)` - Create customer
+    -   `create_sales_order(customer, items, delivery_date, branch)` - Create sales order
+    -   `check_customer_if_existed(mobile_no)` - Check if customer exists
+    -   `frappeApiRequest(method, data)` - Make API request to Frappe method
+
+### 11.2. API Integration Flow
+
+**Order Submission Process:**
+
+1. User fills checkout form in `orders.html`
+2. Inline script calls `submitCartAsOrder(customerInfo)` from `js/api_mapper.js`
+3. `js/api_mapper.js`:
+    - Checks if customer exists by mobile number
+    - Creates customer if not exists (with `customer_group: 'website_customers'`)
+    - Creates sales order with cart items
+    - Returns success/error result
+
+**Script Loading Order (in HTML files):**
+
+```html
+<script src="js/index.js"></script>
+<!-- Cart functions -->
+<script src="js/api_mapper.js"></script>
+<!-- API mapper (includes API config) -->
+<script>
+	/* Page-specific JavaScript */
+</script>
+```
+
+### 11.3. API Data Mapping
+
+**Customer Fields:**
+
+-   `customer_name` - Customer full name
+-   `mobile_no` - Phone number (used as unique identifier)
+-   `email_id` - Email address (optional)
+-   `customer_group` - Always set to `'website_customers'`
+-   `customer_type` - Set to `'Individual'`
+
+**Sales Order Fields:**
+
+-   `customer` - Customer name (from created/found customer)
+-   `delivery_date` - Delivery date
+-   `branch` - Branch selection (optional)
+-   `items` - Array of cart items with:
+    -   `item_code` - Item identifier
+    -   `item_name` - Item name
+    -   `qty` - Quantity
+    -   `rate` - Price per unit
+    -   `uom` - Unit of measure (default: 'Nos')
+
+**Backend Methods (Frappe):**
+
+-   `sweets_site.create_customer.create_customer` - Create customer
+-   `sweets_site.create_sales_order.create_sales_order` - Create sales order
