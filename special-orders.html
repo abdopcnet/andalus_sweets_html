@@ -1,0 +1,513 @@
+<!-- ============================================ -->
+<!-- ملف: special-orders/special-orders.html -->
+<!-- ============================================ -->
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="icon" href="../shared/favicon.ico" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+		<meta http-equiv="Pragma" content="no-cache" />
+		<meta http-equiv="Expires" content="0" />
+		<title>عروض المناسبات والحفلات</title>
+		<link rel="stylesheet" href="../index.css" />
+		<style>
+			.custom-orders-page {
+				font-family: 'DG Kufi', 'Aref Ruqaa', serif;
+				background: linear-gradient(135deg, #fff5e6 0%, #ffe4d1 100%);
+				min-height: auto;
+				display: flex;
+				align-items: flex-start;
+				justify-content: center;
+			}
+
+			/* Custom Orders Section */
+			.custom-orders-section {
+				padding: 20px 20px;
+				width: 100%;
+				display: flex;
+				align-items: flex-start;
+				justify-content: center;
+				min-height: auto;
+			}
+
+			.page-container {
+				max-width: 1200px;
+				margin: 0 auto;
+				width: 100%;
+			}
+
+			/* Content Grid: جنب بعض في الديسكتوب */
+			.content-grid {
+				display: flex;
+				flex-direction: row; /* مهم: صف في الشاشات الكبيرة */
+				gap: 20px;
+				align-items: flex-start;
+				justify-content: center;
+				width: 100%;
+			}
+
+			/* الكرتين */
+			.features-section,
+			.carousel-container,
+			.form-section {
+				position: relative;
+				min-height: auto;
+				display: flex;
+				justify-content: center;
+				align-items: flex-start;
+				width: 100%;
+				max-width: 500px;
+			}
+
+			/* كرت المميزات */
+			.feature-card {
+				background: white;
+				padding: 15px 20px;
+				border-radius: 20px;
+				box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+				transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+				width: 100%;
+				max-width: 500px;
+				margin: 0 auto;
+				opacity: 0;
+				transform: translateX(20px);
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: flex-start;
+				text-align: center;
+			}
+
+			.feature-card.active {
+				opacity: 1;
+				transform: translateX(0);
+			}
+
+			.feature-card:hover {
+				transform: translateY(-5px);
+				box-shadow: 0 15px 40px rgba(255, 107, 53, 0.2);
+			}
+
+			.feature-icon {
+				font-size: 30px;
+				margin-bottom: 5px;
+				margin-top: 0;
+			}
+
+			.feature-card h3 {
+				font-size: 0.9rem;
+				color: #ff6b35;
+				margin-bottom: 4px;
+				margin-top: 0;
+				font-weight: 700;
+			}
+
+			.feature-card p {
+				color: #5d4e37;
+				font-size: 0.75rem;
+				line-height: 1.4;
+				margin: 0;
+				margin-bottom: 0;
+			}
+
+			/* فورم الطلب */
+			.form-section {
+				background: white;
+				padding: 15px 20px;
+				border-radius: 20px;
+				box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+				width: 100%;
+				max-width: 600px;
+				margin: 0 auto;
+			}
+			.order-form {
+				width: 100%;
+			}
+
+			.order-form h2 {
+				font-size: 16px;
+				color: #ff6b35;
+				margin-bottom: 10px;
+				margin-top: 0;
+				font-weight: 700;
+				text-align: center;
+			}
+
+			.form-group {
+				margin-bottom: 12px;
+			}
+
+			.form-group label {
+				display: block;
+				font-size: 12px;
+				color: #5d4e37;
+
+				font-weight: 600;
+				text-align: right;
+			}
+
+			.form-group input,
+			.form-group select,
+			.form-group textarea {
+				width: 100%;
+				padding: 8px 10px;
+				border: 2px solid #e5e5e5;
+				border-radius: 10px;
+				font-size: 10px;
+				font-family: 'DG Kufi', 'Aref Ruqaa', serif;
+				transition: all 0.3s ease;
+				text-align: right;
+				box-sizing: border-box;
+			}
+
+			.form-group input:focus,
+			.form-group select:focus,
+			.form-group textarea:focus {
+				outline: none;
+				border-color: #ff6b35;
+				box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+			}
+
+			.form-group textarea {
+				resize: vertical;
+				min-height: 120px;
+			}
+
+			.submit-button {
+				width: 100%;
+				background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+				color: white;
+				padding: 10px;
+				border-radius: 15px;
+				border: none;
+				font-size: 12px;
+				font-weight: 700;
+				cursor: pointer;
+				transition: all 0.3s ease;
+				box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
+				font-family: 'DG Kufi', 'Aref Ruqaa', serif;
+			}
+
+			.submit-button:hover {
+				transform: translateY(-3px);
+				box-shadow: 0 15px 40px rgba(255, 107, 53, 0.4);
+			}
+
+			@media (max-width: 968px) {
+				.content-grid {
+					flex-direction: column; /* هنا يصيروا فوق بعض */
+					gap: 20px;
+					align-items: center;
+				}
+
+				.form-section {
+					padding: 15px 20px;
+				}
+
+				.feature-card {
+					padding: 15px 20px;
+				}
+			}
+
+			@media (max-width: 640px) {
+				.custom-orders-section {
+					padding: 15px 15px;
+				}
+
+				.form-section {
+					padding: 12px 15px;
+				}
+
+				.order-form h2 {
+					font-size: 16px;
+				}
+
+				.form-group label {
+					font-size: 12px;
+				}
+
+				.form-group input,
+				.form-group select,
+				.form-group textarea {
+					font-size: 10px;
+					padding: 10px;
+				}
+
+				.submit-button {
+					font-size: 12px;
+					padding: 13px;
+				}
+
+				.feature-icon {
+					font-size: 30px;
+				}
+
+				.feature-card h3 {
+					font-size: 12px;
+				}
+
+				.feature-card p {
+					font-size: 12px;
+				}
+			}
+			@media (max-width: 480px) {
+				.form-section {
+					padding: 12px 15px;
+				}
+
+				.order-form h2 {
+					font-size: 16px;
+				}
+
+				.content-grid {
+					gap: 18px;
+				}
+			}
+			.submit-button.disabled {
+				background: #ccc;
+				box-shadow: none;
+				cursor: not-allowed;
+			}
+			.submit-button.disabled:hover {
+				transform: none;
+				box-shadow: none;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- Navbar Component -->
+		<div id="navbar-container"></div>
+
+		<!-- Special Orders Page -->
+		<div class="custom-orders-page">
+			<section class="custom-orders-section">
+				<div class="page-container">
+					<div class="content-grid">
+						<!-- Features Carousel -->
+						<div class="features-section carousel-container">
+							<div class="feature-card active" id="card-0">
+								<div class="feature-icon">📦</div>
+								<h3>كميات كبيرة</h3>
+								<p>نوفر طلبات بكميات كبيرة للمناسبات والحفلات</p>
+							</div>
+							<div class="feature-card" id="card-1" style="display: none">
+								<div class="feature-icon">👥</div>
+								<h3>مناسبات خاصة</h3>
+								<p>أعياد ميلاد، حفلات، مناسبات عائلية</p>
+							</div>
+							<div class="feature-card" id="card-2" style="display: none">
+								<div class="feature-icon">✨</div>
+								<h3>تصميم خاص</h3>
+								<p>سجل طلبك بالمكونات والطريقة التي تفضلها</p>
+							</div>
+						</div>
+
+						<!-- Form Section -->
+						<div class="form-section">
+							<form class="order-form" id="special-order-form">
+								<h2>رجاء سجل بيانات الطلب</h2>
+
+								<div class="form-group">
+									<label>الاسم</label>
+									<input
+										type="text"
+										id="order-name"
+										required
+										placeholder="أدخل اسمك"
+									/>
+								</div>
+
+								<div class="form-group">
+									<label>رقم الهاتف</label>
+									<input
+										type="tel"
+										id="order-phone"
+										required
+										placeholder="05xxxxxxxx"
+									/>
+								</div>
+								<div class="form-group">
+									<label>العنوان</label>
+									<input
+										type="text"
+										id="order-address"
+										required
+										placeholder="أدخل عنوانك"
+									/>
+								</div>
+								<div class="form-group">
+									<label>الفرع</label>
+									<select id="branch-select" class="form-control">
+										<option value="">اختر الفرع</option>
+										<option value="khudraa">فرع الخضراء</option>
+										<option value="nawaria">فرع النوارية</option>
+										<option value="sharai">فرع الشرائع</option>
+										<option value="sitteen">فرع الستين</option>
+										<option value="awali">فرع العوالي</option>
+									</select>
+								</div>
+								<div class="form-group">
+									<label>تاريخ التسليم</label>
+									<input type="date" id="order-date" required />
+								</div>
+
+								<div class="form-group">
+									<label>تفاصيل الطلب</label>
+									<textarea
+										id="order-details"
+										required
+										rows="5"
+										placeholder="اكتب تفاصيل طلبك: المكونات، طريقة التحضير، أي ملاحظات خاصة..."
+									></textarea>
+								</div>
+								<button
+									type="submit"
+									class="submit-button disabled"
+									id="submit-button"
+									disabled
+								>
+									إرسال الطلب 📨
+								</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+
+		<!-- Footer Component -->
+		<div id="footer-container"></div>
+
+		<!-- JavaScript Files -->
+		<script src="../index.js"></script>
+		<script>
+			/* Special Orders JavaScript */
+
+			let currentCardIndex = 0;
+			const cards = [
+				{
+					icon: '📦',
+					title: 'كميات كبيرة',
+					description: 'نوفر طلبات بكميات كبيرة للمناسبات والحفلات',
+				},
+				{
+					icon: '👥',
+					title: 'مناسبات خاصة',
+					description: 'أعياد ميلاد، حفلات، مناسبات عائلية',
+				},
+				{
+					icon: '✨',
+					title: 'تصميم خاص',
+					description: 'سجل طلبك بالمكونات والطريقة التي تفضلها',
+				},
+			];
+
+			// Rotate cards
+			function rotateCards() {
+				const currentCard = document.getElementById(`card-${currentCardIndex}`);
+				if (currentCard) {
+					currentCard.style.display = 'none';
+					currentCard.classList.remove('active');
+				}
+
+				currentCardIndex = (currentCardIndex + 1) % cards.length;
+
+				const nextCard = document.getElementById(`card-${currentCardIndex}`);
+				if (nextCard) {
+					nextCard.style.display = 'block';
+					nextCard.classList.add('active');
+				}
+			}
+
+			/* ================== زر الإرسال والتأكد من الحقول ================== */
+
+			// كل الحقول المطلوبة لتمكين الزر
+			const requiredFields = [
+				'order-name',
+				'order-phone',
+				'order-address',
+				'branch-select',
+				'order-date',
+				'order-details',
+			];
+
+			function checkFormValidity() {
+				const submitBtn = document.getElementById('submit-button');
+				if (!submitBtn) return;
+
+				let isValid = true;
+
+				requiredFields.forEach((id) => {
+					const el = document.getElementById(id);
+					if (!el) return;
+
+					if (!el.value || el.value.trim() === '') {
+						isValid = false;
+					}
+				});
+
+				if (isValid) {
+					submitBtn.disabled = false;
+					submitBtn.classList.remove('disabled');
+				} else {
+					submitBtn.disabled = true;
+					submitBtn.classList.add('disabled');
+				}
+			}
+
+			// Handle form submit
+			function handleFormSubmit(e) {
+				e.preventDefault();
+
+				const formData = {
+					name: document.getElementById('order-name').value,
+					phone: document.getElementById('order-phone').value,
+					address: document.getElementById('order-address').value,
+					branch: document.getElementById('branch-select').value,
+					date: document.getElementById('order-date').value,
+					details: document.getElementById('order-details').value,
+				};
+
+				console.log('Order Data:', formData);
+				alert('تم استلام طلبك الخاص! سنتواصل معك قريباً 🎉');
+
+				document.getElementById('special-order-form').reset();
+				checkFormValidity(); // يرجع الزر معطل بعد التفريغ
+			}
+
+			// Initialize on page load
+			document.addEventListener('DOMContentLoaded', () => {
+				// Start carousel rotation
+				setInterval(rotateCards, 3000);
+
+				// Auto-open date picker on focus (إن كان مدعوم)
+				const orderDateInput = document.getElementById('order-date');
+				if (orderDateInput && typeof orderDateInput.showPicker === 'function') {
+					orderDateInput.addEventListener('focus', () => {
+						orderDateInput.showPicker();
+					});
+				}
+
+				// Handle form submit
+				const form = document.getElementById('special-order-form');
+				if (form) {
+					form.addEventListener('submit', handleFormSubmit);
+				}
+
+				// ربط التحقق بجميع الحقول المطلوبة
+				requiredFields.forEach((id) => {
+					const el = document.getElementById(id);
+					if (!el) return;
+
+					el.addEventListener('input', checkFormValidity);
+					el.addEventListener('change', checkFormValidity);
+				});
+
+				// أول استدعاء
+				checkFormValidity();
+			});
+		</script>
+	</body>
+</html>
