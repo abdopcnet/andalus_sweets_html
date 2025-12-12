@@ -276,6 +276,53 @@ Each HTML page includes:
 -   Arabic font: `"Aref Ruqaa", serif` / `"DG Kufi"` (custom font from `shared/fonts/dg-kufi.ttf`)
 -   English font: `"Cairo", "Segoe UI", sans-serif`
 
+### 5.4. Direct Inline Styles Method
+
+**When requested, replace all `class` attributes with direct inline `style` attributes:**
+
+1. **Convert CSS classes to inline styles:**
+
+    - Read CSS rules from `index.css` or page-specific CSS files
+    - Convert each CSS property to inline style format
+    - Replace `class="class-name"` with `style="property: value; property: value;"`
+    - Example: `class="hero-banner"` → `style="background: linear-gradient(...); padding: 20px 0px; display: flex; ..."`
+
+2. **Style attribute formatting:**
+
+    - Use semicolons to separate properties: `style="property1: value1; property2: value2;"`
+    - For long styles, use multi-line format for readability:
+        ```html
+        <div
+        	style="
+                background: linear-gradient(...);
+                padding: 20px 0px;
+                display: flex;
+                align-items: center;
+            "
+        ></div>
+        ```
+    - Remove trailing semicolons from last property (optional, but consistent)
+
+3. **CSS to inline conversion rules:**
+
+    - Copy all CSS properties from class definition
+    - Convert CSS syntax to inline style syntax (same format)
+    - Include all properties: `display`, `padding`, `margin`, `background`, `color`, `font-size`, etc.
+    - Preserve `!important` flags if present: `font-family: 'DG Kufi' !important;`
+    - Convert complex values: gradients, shadows, transforms, etc.
+
+4. **When to use inline styles:**
+
+    - When explicitly requested by user
+    - For specific elements that need direct styling
+    - When CSS classes are not available or need to be bypassed
+
+5. **Important notes:**
+    - Inline styles have higher specificity than CSS classes
+    - Inline styles cannot use CSS selectors (no `:hover`, `:before`, etc.)
+    - Media queries cannot be applied to inline styles
+    - Keep CSS file linked for other styles (navbar, footer, etc.)
+
 ## 6. DEVELOPMENT WORKFLOW 🛠️
 
 ### 6.1. File Editing Protocol
@@ -403,7 +450,7 @@ When working on this project, apply these principles:
 -   🧭 **CODE ANALYSIS PRINCIPLES** - Read actual files, understand vanilla JavaScript, check module location
 -   📦 **ASSET MANAGEMENT** - Use relative paths, follow modular folder structure
 -   ⚡ **JAVASCRIPT BEST PRACTICES** - Page-specific and shared modules, localStorage, DOM manipulation
--   🎨 **STYLING GUIDELINES** - Page-specific CSS, shared CSS in index.css, RTL layout, responsive breakpoints
+-   🎨 **STYLING GUIDELINES** - Page-specific CSS, shared CSS in index.css, RTL layout, responsive breakpoints, direct inline styles method
 -   🛠️ **DEVELOPMENT WORKFLOW** - Read before edit, identify module, verify relative paths
 -   🔧 **COMMON TASKS** - Follow modular patterns for products, pages, styles, components
 -   🐛 **DEBUGGING** - Check relative paths, console errors, cache, file locations
