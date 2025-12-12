@@ -171,6 +171,7 @@
 		padding: 6px 8px;
 		font-size: 14px;
 	}
+
 	.logo {
 		height: 48px;
 	}
@@ -180,12 +181,15 @@
 	.mobile-only-cart {
 		display: none !important;
 	}
+
 	.menu-toggle {
 		display: none !important;
 	}
+
 	.mobile-menu {
 		display: none !important;
 	}
+
 	.desktop-menu {
 		display: flex !important;
 	}
@@ -195,6 +199,7 @@
 	.desktop-menu {
 		display: none !important;
 	}
+
 	.mobile-menu {
 		display: none;
 		position: absolute;
@@ -206,23 +211,28 @@
 		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 		z-index: 1000;
 	}
+
 	.mobile-menu.active {
 		display: block;
 	}
+
 	.mobile-menu .navbar-center,
 	.mobile-menu .navbar-right {
 		flex-direction: column;
 		align-items: stretch;
 	}
+
 	.mobile-menu .nav-item {
 		margin: 10px 0;
 		padding: 10px;
 		justify-content: flex-start;
 		font-size: 14px;
 	}
+
 	.cart-icon {
 		margin-top: 10px;
 	}
+
 	.menu-toggle {
 		display: block !important;
 	}
@@ -232,6 +242,7 @@
 	.logo {
 		height: 40px;
 	}
+
 	.nav-item {
 		font-size: 14px;
 		margin: 0 4px;
