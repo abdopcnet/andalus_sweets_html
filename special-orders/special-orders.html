@@ -1,125 +1,0 @@
-<!-- ============================================ -->
-<!-- ملف: special-orders/special-orders.html -->
-<!-- ============================================ -->
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-	<head>
-		<meta charset="UTF-8" />
-		<link rel="icon" href="../shared/favicon.ico" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-		<meta http-equiv="Pragma" content="no-cache" />
-		<meta http-equiv="Expires" content="0" />
-		<title>عروض المناسبات والحفلات</title>
-		<link rel="stylesheet" href="../index.css" />
-		<link rel="stylesheet" href="special-orders.css" />
-	</head>
-	<body>
-		<!-- Navbar Component -->
-		<div id="navbar-container"></div>
-
-		<!-- Special Orders Page -->
-		<div class="custom-orders-page">
-			<section class="custom-orders-section">
-				<div class="page-container">
-					<div class="content-grid">
-						<!-- Features Carousel -->
-						<div class="features-section carousel-container">
-							<div class="feature-card active" id="card-0">
-								<div class="feature-icon">📦</div>
-								<h3>كميات كبيرة</h3>
-								<p>نوفر طلبات بكميات كبيرة للمناسبات والحفلات</p>
-							</div>
-							<div class="feature-card" id="card-1" style="display: none">
-								<div class="feature-icon">👥</div>
-								<h3>مناسبات خاصة</h3>
-								<p>أعياد ميلاد، حفلات، مناسبات عائلية</p>
-							</div>
-							<div class="feature-card" id="card-2" style="display: none">
-								<div class="feature-icon">✨</div>
-								<h3>تصميم خاص</h3>
-								<p>سجل طلبك بالمكونات والطريقة التي تفضلها</p>
-							</div>
-						</div>
-
-						<!-- Form Section -->
-						<div class="form-section">
-							<form class="order-form" id="special-order-form">
-								<h2>رجاء سجل بيانات الطلب</h2>
-
-								<div class="form-group">
-									<label>الاسم</label>
-									<input
-										type="text"
-										id="order-name"
-										required
-										placeholder="أدخل اسمك"
-									/>
-								</div>
-
-								<div class="form-group">
-									<label>رقم الهاتف</label>
-									<input
-										type="tel"
-										id="order-phone"
-										required
-										placeholder="05xxxxxxxx"
-									/>
-								</div>
-								<div class="form-group">
-									<label>العنوان</label>
-									<input
-										type="text"
-										id="order-address"
-										required
-										placeholder="أدخل عنوانك"
-									/>
-								</div>
-								<div class="form-group">
-									<label>الفرع</label>
-									<select id="branch-select" class="form-control">
-										<option value="">اختر الفرع</option>
-										<option value="khudraa">فرع الخضراء</option>
-										<option value="nawaria">فرع النوارية</option>
-										<option value="sharai">فرع الشرائع</option>
-										<option value="sitteen">فرع الستين</option>
-										<option value="awali">فرع العوالي</option>
-									</select>
-								</div>
-								<div class="form-group">
-									<label>تاريخ التسليم</label>
-									<input type="date" id="order-date" required />
-								</div>
-
-								<div class="form-group">
-									<label>تفاصيل الطلب</label>
-									<textarea
-										id="order-details"
-										required
-										rows="5"
-										placeholder="اكتب تفاصيل طلبك: المكونات، طريقة التحضير، أي ملاحظات خاصة..."
-									></textarea>
-								</div>
-								<button
-									type="submit"
-									class="submit-button disabled"
-									id="submit-button"
-									disabled
-								>
-									إرسال الطلب 📨
-								</button>
-							</form>
-						</div>
-					</div>
-				</div>
-			</section>
-		</div>
-
-		<!-- Footer Component -->
-		<div id="footer-container"></div>
-
-		<!-- JavaScript Files -->
-		<script src="../index.js"></script>
-		<script src="special-orders.js"></script>
-	</body>
-</html>
