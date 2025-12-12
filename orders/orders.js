@@ -132,7 +132,149 @@ function updateTotalPrice() {
 	}
 }
 
+// ============================================
+// Checkout Modal Functions
+// ============================================
+
+// Show checkout modal
+function showCheckoutModal() {
+	const modal = document.getElementById('checkout-modal');
+	if (modal) {
+		modal.style.display = 'flex';
+		// Set default delivery date to tomorrow
+		const tomorrow = new Date();
+		tomorrow.setDate(tomorrow.getDate() + 1);
+		const deliveryDateInput = document.getElementById('delivery-date');
+		if (deliveryDateInput) {
+			deliveryDateInput.value = tomorrow.toISOString().split('T')[0];
+		}
+	}
+}
+
+// Hide checkout modal
+function hideCheckoutModal() {
+	const modal = document.getElementById('checkout-modal');
+	if (modal) {
+		modal.style.display = 'none';
+		// Reset form
+		const form = document.getElementById('checkout-form');
+		if (form) {
+			form.reset();
+		}
+		// Clear error/success messages
+		const errorDiv = document.getElementById('checkout-error');
+		const successDiv = document.getElementById('checkout-success');
+		if (errorDiv) errorDiv.style.display = 'none';
+		if (successDiv) successDiv.style.display = 'none';
+	}
+}
+
+// Handle checkout form submission
+async function handleCheckoutSubmit(event) {
+	event.preventDefault();
+
+	const submitBtn = document.getElementById('submit-order-btn');
+	const errorDiv = document.getElementById('checkout-error');
+	const successDiv = document.getElementById('checkout-success');
+
+	// Disable submit button
+	if (submitBtn) {
+		submitBtn.disabled = true;
+		submitBtn.textContent = 'جاري المعالجة...';
+	}
+
+	// Hide previous messages
+	if (errorDiv) errorDiv.style.display = 'none';
+	if (successDiv) successDiv.style.display = 'none';
+
+	try {
+		// Get form data
+		const formData = new FormData(event.target);
+		const customerInfo = {
+			customer_name: formData.get('customer_name'),
+			mobile_no: formData.get('mobile_no'),
+			shipping_address: formData.get('shipping_address'),
+			delivery_date: formData.get('delivery_date'),
+		};
+
+		// Validate required fields
+		if (!customerInfo.customer_name || !customerInfo.mobile_no) {
+			throw new Error('الرجاء إدخال الاسم الكامل ورقم الهاتف');
+		}
+
+		// Submit order to Frappe
+		const result = await submitCartAsOrder(customerInfo);
+
+		if (result.success) {
+			// Show success message
+			if (successDiv) {
+				successDiv.textContent = `تم إرسال الطلب بنجاح! رقم الطلب: ${
+					result.salesOrder?.name || 'N/A'
+				}`;
+				successDiv.style.display = 'block';
+			}
+
+			// Clear cart and redirect after 3 seconds
+			setTimeout(() => {
+				hideCheckoutModal();
+				window.location.href = '../index.html';
+			}, 3000);
+		} else {
+			throw new Error(result.error || 'فشل إرسال الطلب');
+		}
+	} catch (error) {
+		console.error('Checkout error:', error);
+		if (errorDiv) {
+			errorDiv.textContent = error.message || 'حدث خطأ أثناء إرسال الطلب';
+			errorDiv.style.display = 'block';
+		}
+		if (submitBtn) {
+			submitBtn.disabled = false;
+			submitBtn.textContent = 'تأكيد الطلب';
+		}
+	}
+}
+
+// Initialize checkout modal
+function initCheckoutModal() {
+	const checkoutBtn = document.getElementById('checkout-btn');
+	const modal = document.getElementById('checkout-modal');
+	const closeBtn = document.querySelector('.checkout-modal-close');
+	const cancelBtn = document.getElementById('cancel-checkout-btn');
+	const checkoutForm = document.getElementById('checkout-form');
+
+	// Open modal on checkout button click
+	if (checkoutBtn) {
+		checkoutBtn.addEventListener('click', showCheckoutModal);
+	}
+
+	// Close modal on close button click
+	if (closeBtn) {
+		closeBtn.addEventListener('click', hideCheckoutModal);
+	}
+
+	// Close modal on cancel button click
+	if (cancelBtn) {
+		cancelBtn.addEventListener('click', hideCheckoutModal);
+	}
+
+	// Close modal when clicking outside
+	if (modal) {
+		modal.addEventListener('click', (e) => {
+			if (e.target === modal) {
+				hideCheckoutModal();
+			}
+		});
+	}
+
+	// Handle form submission
+	if (checkoutForm) {
+		checkoutForm.addEventListener('submit', handleCheckoutSubmit);
+	}
+}
+
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', () => {
 	renderCartItems();
+	initCheckoutModal();
 });
