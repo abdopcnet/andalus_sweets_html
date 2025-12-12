@@ -27,6 +27,11 @@ body {
 	background-color: #fafafa;
 }
 
+img {
+	text-align: center;
+	vertical-align: middle;
+}
+
 /* Modal Styles (Location Modal) */
 .modal-overlay {
 	position: fixed;
@@ -161,6 +166,7 @@ body {
 .mobile-only-cart img {
 	width: 24px;
 	height: 24px;
+	margin-left: 0px;
 }
 
 .desktop-menu {
@@ -890,6 +896,7 @@ body {
 	color: #5d4e37;
 	margin-bottom: 10px;
 	font-weight: 500;
+	vertical-align: middle;
 }
 
 .order-button {
