@@ -184,7 +184,7 @@ function updateProductCardControls(productId) {
 // Add product to cart
 function addSweetsToCart(productId) {
 	const product = sweetsProducts.find((p) => p.id === productId);
-	if (product && typeof addToCart === 'function') {
+	if (product) {
 		addToCart(product);
 		updateProductCardControls(productId);
 	}
@@ -192,26 +192,20 @@ function addSweetsToCart(productId) {
 
 // Increase product quantity
 function increaseSweetsQty(productId) {
-	if (typeof increaseQty === 'function') {
-		increaseQty(productId);
-		updateProductCardControls(productId);
-	}
+	increaseQty(productId);
+	updateProductCardControls(productId);
 }
 
 // Decrease product quantity
 function decreaseSweetsQty(productId) {
-	if (typeof decreaseQty === 'function') {
-		decreaseQty(productId);
-		updateProductCardControls(productId);
-	}
+	decreaseQty(productId);
+	updateProductCardControls(productId);
 }
 
 // Remove product from cart
 function removeSweetsFromCart(productId) {
-	if (typeof removeFromCart === 'function') {
-		removeFromCart(productId);
-		updateProductCardControls(productId);
-	}
+	removeFromCart(productId);
+	updateProductCardControls(productId);
 }
 
 // Select category
