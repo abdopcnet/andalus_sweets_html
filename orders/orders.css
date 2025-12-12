@@ -41,7 +41,8 @@
 /* mobile: keep one row but adjust sizes */
 @media (max-width: 768px) {
 	.cart-item {
-		grid-template-columns: 80px 1fr auto auto auto;
+		grid-template-columns: 80px 1fr auto;
+		grid-template-rows: auto auto;
 		padding: 0.75rem;
 		gap: 0.75rem;
 	}
@@ -49,14 +50,19 @@
 	.cart-item-image {
 		width: 80px;
 		height: 80px;
+		grid-column: 1;
+		grid-row: 1 / 3;
 	}
 
 	.cart-item-info {
-		min-width: 100px;
+		grid-column: 2;
+		grid-row: 1;
+		min-width: 0;
 	}
 
 	.cart-item-name {
 		font-size: 0.9rem;
+		margin-bottom: 0.25rem;
 	}
 
 	.cart-item-price {
@@ -64,7 +70,10 @@
 	}
 
 	.cart-item-qty {
+		grid-column: 2;
+		grid-row: 2;
 		gap: 0.3rem;
+		justify-self: start;
 	}
 
 	.qty-btn {
@@ -74,14 +83,23 @@
 	}
 
 	.cart-item-total {
+		grid-column: 3;
+		grid-row: 1;
 		min-width: 80px;
 		font-size: 0.9rem;
+		justify-self: end;
+		align-self: start;
+		text-align: left;
 	}
 
 	.delete-btn {
 		width: 40px;
 		height: 40px;
 		font-size: 0.9rem;
+		grid-column: 3;
+		grid-row: 2;
+		justify-self: end;
+		align-self: center;
 	}
 }
 
@@ -282,7 +300,8 @@
 	}
 
 	.cart-item {
-		grid-template-columns: 70px 1fr auto auto auto;
+		grid-template-columns: 70px 1fr auto;
+		grid-template-rows: auto auto;
 		padding: 0.5rem;
 		gap: 0.5rem;
 	}
@@ -290,14 +309,30 @@
 	.cart-item-image {
 		width: 70px;
 		height: 70px;
+		grid-column: 1;
+		grid-row: 1 / 3;
+	}
+
+	.cart-item-info {
+		grid-column: 2;
+		grid-row: 1;
+		min-width: 0;
 	}
 
 	.cart-item-name {
 		font-size: 0.85rem;
+		margin-bottom: 0.2rem;
 	}
 
 	.cart-item-price {
 		font-size: 0.75rem;
+	}
+
+	.cart-item-qty {
+		grid-column: 2;
+		grid-row: 2;
+		gap: 0.25rem;
+		justify-self: start;
 	}
 
 	.qty-btn {
@@ -311,14 +346,23 @@
 	}
 
 	.cart-item-total {
+		grid-column: 3;
+		grid-row: 1;
 		min-width: 70px;
 		font-size: 0.85rem;
+		justify-self: end;
+		align-self: start;
+		text-align: left;
 	}
 
 	.delete-btn {
 		width: 35px;
 		height: 35px;
 		font-size: 0.8rem;
+		grid-column: 3;
+		grid-row: 2;
+		justify-self: end;
+		align-self: center;
 	}
 
 	.total-price {
