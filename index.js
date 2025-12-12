@@ -34,7 +34,7 @@ function updateCartUI() {
 			badge.style.display = 'none';
 		}
 	});
-	
+
 	// Update floating cart badge
 	const floatingBadge = document.getElementById('floating-cart-badge');
 	const floatingBtn = document.getElementById('floating-cart-btn');
@@ -48,7 +48,7 @@ function updateCartUI() {
 			floatingBtn.classList.add('hidden');
 		}
 	}
-	
+
 	window.dispatchEvent(new Event('cartUpdated'));
 }
 
@@ -236,32 +236,19 @@ async function loadNavbar() {
 }
 
 function initializeNavbar() {
-	const menuToggle = document.getElementById('menu-toggle');
 	const mobileMenu = document.getElementById('mobile-menu');
 
-	if (menuToggle && mobileMenu) {
-		menuToggle.addEventListener('click', function (e) {
-			e.stopPropagation();
-			mobileMenu.classList.toggle('active');
-			menuToggle.classList.toggle('active');
-		});
-
+	if (mobileMenu) {
 		const mobileLinks = mobileMenu.querySelectorAll('a');
 		mobileLinks.forEach((link) => {
 			link.addEventListener('click', () => {
 				mobileMenu.classList.remove('active');
-				menuToggle.classList.remove('active');
 			});
 		});
 
 		document.addEventListener('click', (e) => {
-			if (
-				!mobileMenu.contains(e.target) &&
-				!menuToggle.contains(e.target) &&
-				mobileMenu.classList.contains('active')
-			) {
+			if (!mobileMenu.contains(e.target) && mobileMenu.classList.contains('active')) {
 				mobileMenu.classList.remove('active');
-				menuToggle.classList.remove('active');
 			}
 		});
 	}
@@ -306,7 +293,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	// Load navbar and footer
 	loadNavbar();
 	loadFooter();
-	
+
 	// Update cart UI on page load
 	updateCartUI();
 
