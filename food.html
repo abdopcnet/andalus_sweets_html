@@ -2,14 +2,13 @@
 <html lang="ar" dir="rtl">
 	<head>
 		<meta charset="UTF-8" />
-		<link rel="icon" href="../shared/favicon.ico" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" href="assets/images/favicon.ico" />
 		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
 		<meta http-equiv="Pragma" content="no-cache" />
 		<meta http-equiv="Expires" content="0" />
 		<title>مذاق النبلاء للمأكولات</title>
 		<!-- Local fonts only -->
-		<link rel="stylesheet" href="assets/fonts/dg-kufi.ttf" />
 		<link rel="stylesheet" href="css/index.css" />
 		<style>
 			/* Food Restaurant Styles */
@@ -59,20 +58,22 @@
 				.hero-content {
 					position: absolute;
 					top: 50%;
-					right: 5%;
-					transform: translateY(-50%);
+					left: 50%;
+					transform: translate(-50%, -50%);
 					z-index: 100;
 					max-width: 600px;
-					text-align: right;
+					text-align: center;
+					width: 100%;
 				}
 
 				.hero-title {
-					color: #fff;
-					text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+					color: #ff6f00;
+					text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
 					font-size: clamp(32px, 6vw, 96px);
 					margin-bottom: 30px;
 					font-family: 'DG Kufi', 'Aref Ruqaa', serif;
 					line-height: 1.05;
+					text-align: center;
 				}
 
 				/* الزرار فوق الصورة (إن احتجتيه لاحقاً) */
@@ -412,14 +413,15 @@
 				display: inline-block;
 				backdrop-filter: blur(4px);
 			}
-			شغال .add-to-cart-btn {
+			.add-to-cart-btn {
 				background: #ffffff;
 				color: #ff6f00;
 				border: none;
-				padding: 0.6rem 1.2rem;
+				padding: 10px 80px;
 				border-radius: 8px;
 				cursor: pointer;
-				font-size: 0.9em;
+				font-size: 12px;
+				font-family: 'Aref Ruqaa';
 				font-weight: bold;
 				box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
 				transition: all 0.3s ease;
@@ -649,6 +651,7 @@
 				box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
 				overflow: hidden;
 				transition: transform 0.3s ease, box-shadow 0.3s ease;
+				vertical-align: bottom;
 			}
 
 			.parts-card:hover {
@@ -684,7 +687,7 @@
 				border: none;
 				padding: 0.85rem 2rem;
 				margin: 1.5rem;
-				border-radius: 12px;
+				border-radius: 8px;
 				cursor: pointer;
 				font-size: 1.4em;
 				font-weight: bold;
@@ -692,6 +695,12 @@
 				transition: all 0.3s ease;
 				width: calc(100% - 3rem);
 				text-align: center;
+				display: grid;
+				justify-content: center;
+				align-items: center;
+				font-family: 'Aref Ruqaa';
+				opacity: 0.9;
+				vertical-align: bottom;
 			}
 
 			.parts-card > button:hover {
@@ -702,19 +711,19 @@
 			}
 
 			.parts-card-1 {
-				background-image: url('images/food1.png');
+				background-image: url('assets/images/food1.png');
 			}
 
 			.parts-card-2 {
-				background-image: url('images/food3.png');
+				background-image: url('assets/images/food3.png');
 			}
 
 			.parts-card-3 {
-				background-image: url('images/food2.jpg');
+				background-image: url('assets/images/food2.jpg');
 			}
 
 			.parts-card-4 {
-				background-image: url('images/food3.png');
+				background-image: url('assets/images/food3.png');
 			}
 
 			/* Responsive parts-section */
@@ -835,7 +844,7 @@
 
 		<!-- Hero Section -->
 		<section class="hero-section">
-			<div class="food-slider">
+			<!-- <div class="food-slider">
 				<video
 					class="hero-video"
 					src="assets/videos/foods_slideshow.mp4"
@@ -845,7 +854,7 @@
 					playsinline
 					style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px"
 				></video>
-			</div>
+			</div> -->
 
 			<div class="hero-content">
 				<h1 class="hero-title">
@@ -914,98 +923,98 @@
 					name: 'أرز دجاج',
 					price: 45,
 					category: 'دواجن',
-					image: 'images/food1.png',
+					image: 'assets/images/food1.png',
 				},
 				{
 					id: 2,
 					name: 'كبسة لحم',
 					price: 55,
 					category: 'لحوم',
-					image: 'images/food3.png',
+					image: 'assets/images/food3.png',
 				},
 				{
 					id: 3,
 					name: 'مندي دجاج',
 					price: 40,
 					category: 'دواجن',
-					image: 'images/food2.jpg',
+					image: 'assets/images/food2.jpg',
 				},
 				{
 					id: 4,
 					name: 'مظبي لحم',
 					price: 60,
 					category: 'لحوم',
-					image: 'images/food3.png',
+					image: 'assets/images/food3.png',
 				},
 				{
 					id: 5,
 					name: 'برياني دجاج',
 					price: 38,
 					category: 'دواجن',
-					image: 'images/food1.png',
+					image: 'assets/images/food1.png',
 				},
 				{
 					id: 6,
 					name: 'مشوي مشكل',
 					price: 70,
 					category: 'لحوم',
-					image: 'images/food2.jpg',
+					image: 'assets/images/food2.jpg',
 				},
 				{
 					id: 7,
 					name: 'دجاج مشوي',
 					price: 35,
 					category: 'دواجن',
-					image: 'images/food3.png',
+					image: 'assets/images/food3.png',
 				},
 				{
 					id: 8,
 					name: 'ريش مشوي',
 					price: 65,
 					category: 'لحوم',
-					image: 'images/food3.png',
+					image: 'assets/images/food3.png',
 				},
 				{
 					id: 9,
 					name: 'حمص باللحمة',
 					price: 30,
 					category: 'مقبلات',
-					image: 'images/food1.png',
+					image: 'assets/images/food1.png',
 				},
 				{
 					id: 10,
 					name: 'فتوش',
 					price: 20,
 					category: 'مقبلات',
-					image: 'images/food2.jpg',
+					image: 'assets/images/food2.jpg',
 				},
 				{
 					id: 11,
 					name: 'متبل',
 					price: 15,
 					category: 'مقبلات',
-					image: 'images/food3.png',
+					image: 'assets/images/food3.png',
 				},
 				{
 					id: 12,
 					name: 'فطيرة جبن',
 					price: 25,
 					category: 'فطائر',
-					image: 'images/food1.png',
+					image: 'assets/images/food1.png',
 				},
 				{
 					id: 13,
 					name: 'فطيرة زعتر',
 					price: 20,
 					category: 'فطائر',
-					image: 'images/food2.jpg',
+					image: 'assets/images/food2.jpg',
 				},
 				{
 					id: 14,
 					name: 'فطيرة لحم',
 					price: 30,
 					category: 'فطائر',
-					image: 'images/food3.png',
+					image: 'assets/images/food3.png',
 				},
 			];
 

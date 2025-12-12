@@ -7,6 +7,288 @@
 
 	<link rel="stylesheet" href="css/index.css">
 </head>
+<style>
+	.footer {
+	background-color: #ff6f00;
+	color: white;
+	padding: 40px 20px 20px;
+	text-align: center;
+	direction: rtl;
+	font-family: 'DG Kufi', 'Aref Ruqaa', serif;
+}
+
+.footer-container {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	gap: 40px;
+	margin-bottom: 0px;
+	max-width: 1400px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.footer-section {
+	text-align: right;
+	padding: 0 15px;
+}
+
+.footer-section.branches-map {
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+.footer-section h3 {
+	font-size: 1rem;
+	margin-bottom: 10px;
+	border-bottom: 3px solid #fff;
+	display: inline-block;
+	padding-bottom: 0;
+}
+
+.footer-section p {
+	font-size: 1rem;
+	line-height: 1.8;
+	margin: 12px 0;
+}
+
+.footer-section img {
+	cursor: pointer;
+}
+
+.footer-section i {
+	margin-left: 10px;
+	color: #fffbe5;
+	font-size: 1.1rem;
+}
+
+/* أيقونات السوشال */
+.footer-social {
+	margin-top: 0px;
+	display: flex;
+	gap: 15px;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+	vertical-align: middle;
+}
+
+.footer-social a {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+}
+
+.footer-social img {
+	width: auto;
+	height: 4vh;
+	object-fit: contain;
+}
+
+/* Branches and Map Section */
+.branches-map {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.branches-list {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.branch-item {
+	background: rgba(255, 255, 255, 0.1);
+	padding: 0;
+	border-radius: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	transition: transform 0.3s ease, background 0.3s ease;
+	gap: 1rem;
+	direction: rtl;
+	vertical-align: middle;
+}
+
+.branch-item:hover {
+	transform: translateX(-5px);
+	background: rgba(255, 255, 255, 0.15);
+}
+
+.branch-item h4 {
+	font-size: 1rem;
+	margin: 0;
+	color: #fffbe5;
+	order: 1;
+}
+
+.branch-item p {
+	font-size: 1rem;
+	font-family: cursive;
+	margin: 0;
+	color: #fffbe5;
+	order: 2;
+}
+
+.branch-item a {
+	flex-shrink: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-decoration: none;
+	transition: transform 0.3s ease;
+	order: 3;
+}
+
+.branch-item a:hover {
+	transform: scale(1.1);
+}
+
+.branch-item img {
+	width: auto;
+	height: 4vh;
+	object-fit: contain;
+}
+
+/* Map Box */
+.map-box {
+	width: 100%;
+	height: 250px;
+	border-radius: 12px;
+	overflow: hidden;
+	box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+	margin-top: 10px;
+}
+
+.footer-bottom {
+	border-top: 2px solid rgba(255, 255, 255, 0.3);
+	padding-top: 0px;
+	margin-top: 0px;
+	font-size: 1rem;
+}
+
+.footer-bottom p {
+	vertical-align: middle;
+}
+
+/* Desktop */
+@media (min-width: 1200px) {
+	.footer-container {
+		grid-template-columns: 1fr 1fr 1.2fr;
+	}
+	.map-box {
+		height: 280px;
+	}
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+	.footer-container {
+		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+		gap: 30px;
+	}
+	.footer-section h3 {
+		font-size: 1.3rem;
+	}
+	.map-box {
+		height: 230px;
+	}
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+	.footer {
+		padding: 30px 15px 15px;
+	}
+	.footer-container {
+		grid-template-columns: 1fr;
+		gap: 30px;
+	}
+	.footer-section {
+		text-align: center;
+	}
+
+	.footer-section.about h3,
+	.footer-section.about p,
+	.footer-section.about ul {
+		display: none;
+	}
+
+	.footer-section h3 {
+		font-size: 1.2rem;
+	}
+	.footer-section p {
+		font-size: 0.95rem;
+	}
+	.branch-item {
+		padding: 0;
+	}
+	.branch-item:hover {
+		transform: translateY(-3px);
+	}
+	.map-box {
+		height: 220px;
+		border-radius: 10px;
+	}
+}
+
+@media (max-width: 480px) {
+	.footer {
+		padding: 25px 10px 15px;
+	}
+	.footer-container {
+		gap: 25px;
+	}
+	.footer-section h3 {
+		font-size: 1.1rem;
+		margin-bottom: 0px;
+	}
+	.footer-section p {
+		font-size: 0.9rem;
+		line-height: 1.6;
+	}
+	.footer-section i {
+		font-size: 1rem;
+		margin-left: 6px;
+	}
+	.branch-item {
+		padding: 0;
+	}
+	.branch-item h4 {
+		font-size: 1.05rem;
+	}
+	.map-box {
+		height: 200px;
+		border-radius: 8px;
+	}
+	.footer-bottom {
+		font-size: 0.85rem;
+		padding-top: 0px;
+	}
+}
+
+@media (max-width: 360px) {
+	.footer-section h3 {
+		font-size: 1rem;
+	}
+	.footer-section p {
+		font-size: 0.85rem;
+	}
+	.branch-item h4 {
+		font-size: 0.95rem;
+	}
+	.branch-item p {
+		font-size: 0.85rem;
+	}
+	.map-box {
+		height: 180px;
+	}
+	.footer-bottom {
+		font-size: 0.8rem;
+	}
+}
+</style>
 <body>
 
 <footer class="footer">
@@ -23,17 +305,17 @@
 			</ul>
 
 			<div class="footer-social">
-				<a href=""><img src="/shared/footer/images/whatsapp.png" style="height: 4vh" /></a>
+				<a href=""><img src="assets/images/whatsapp.png" style="height: 4vh" /></a>
 				<a href=""
-					><img src="/shared/footer/images/colored-facebook.png" style="height: 4vh"
+					><img src="assets/images/colored-facebook.png" style="height: 4vh"
 				/></a>
 				<a href=""
-					><img src="/shared/footer/images/colored-instagram.png" style="height: 4vh"
+					><img src="assets/images/colored-instagram.png" style="height: 4vh"
 				/></a>
 				<a href=""
-					><img src="/shared/footer/images/colored-youtube.png" style="height: 4vh"
+					><img src="assets/images/colored-youtube.png" style="height: 4vh"
 				/></a>
-				<a href=""><img src="/shared/footer/images/linkedin.png" style="height: 4vh" /></a>
+				<a href=""><img src="assets/images/linkedin.png" style="height: 4vh" /></a>
 			</div>
 		</div>
 
@@ -48,7 +330,7 @@
 					rel="noopener noreferrer"
 				>
 					<img
-						src="/shared/footer/images/whatsapp.png"
+						src="assets/images/whatsapp.png"
 						style="height: 4vh"
 						alt="واتساب"
 					/>
@@ -63,7 +345,7 @@
 					rel="noopener noreferrer"
 				>
 					<img
-						src="/shared/footer/images/whatsapp.png"
+						src="assets/images/whatsapp.png"
 						style="height: 4vh"
 						alt="واتساب"
 					/>
@@ -78,7 +360,7 @@
 					rel="noopener noreferrer"
 				>
 					<img
-						src="/shared/footer/images/whatsapp.png"
+						src="assets/images/whatsapp.png"
 						style="height: 4vh"
 						alt="واتساب"
 					/>
@@ -93,7 +375,7 @@
 					rel="noopener noreferrer"
 				>
 					<img
-						src="/shared/footer/images/whatsapp.png"
+						src="assets/images/whatsapp.png"
 						style="height: 4vh"
 						alt="واتساب"
 					/>
@@ -108,7 +390,7 @@
 					rel="noopener noreferrer"
 				>
 					<img
-						src="/shared/footer/images/whatsapp.png"
+						src="assets/images/whatsapp.png"
 						style="height: 4vh"
 						alt="واتساب"
 					/>

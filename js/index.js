@@ -215,14 +215,7 @@ function initLocationModal() {
 
 async function loadNavbar() {
 	try {
-		let navbarPath = '../shared/navbar/navbar.html';
-		if (
-			window.location.pathname === '/' ||
-			window.location.pathname.endsWith('/index.html') ||
-			window.location.pathname === '/index.html'
-		) {
-			navbarPath = 'shared/navbar/navbar.html';
-		}
+		let navbarPath = 'navbar.html';
 
 		const response = await fetch(navbarPath);
 		if (!response.ok) throw new Error('فشل تحميل الـ Navbar');
@@ -266,14 +259,7 @@ function initializeNavbar() {
 
 async function loadFooter() {
 	try {
-		let footerPath = '../shared/footer/footer.html';
-		if (
-			window.location.pathname === '/' ||
-			window.location.pathname.endsWith('/index.html') ||
-			window.location.pathname === '/index.html'
-		) {
-			footerPath = 'shared/footer/footer.html';
-		}
+		let footerPath = 'footer.html';
 
 		const response = await fetch(footerPath);
 		if (!response.ok) throw new Error('فشل تحميل الـ Footer');
