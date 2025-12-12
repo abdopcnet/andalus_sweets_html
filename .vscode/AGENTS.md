@@ -1,7 +1,3 @@
----
-alwaysApply: true
----
-
 # Andalus Sweets - AI Agent Guidelines
 
 ## 0. COMMUNICATION RULES 📢
