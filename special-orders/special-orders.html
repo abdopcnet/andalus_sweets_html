@@ -75,7 +75,17 @@
 										placeholder="أدخل عنوانك"
 									/>
 								</div>
-
+									<div class="form-group">
+									<label>الفرع</label>
+										<select id="branch-select" class="form-control">
+									<option value="">اختر الفرع</option>
+									<option value="khudraa">فرع الخضراء</option>
+									<option value="nawaria">فرع النوارية</option>
+									<option value="sharai">فرع الشرائع</option>
+									<option value="sitteen">فرع الستين</option>
+									<option value="awali">فرع العوالي</option>
+								</select>
+								</div>
 								<div class="form-group">
 									<label>تاريخ التسليم</label>
 									<input type="date" id="order-date" required />
@@ -91,7 +101,11 @@
 									></textarea>
 								</div>
 
-								<button type="submit" class="submit-button">إرسال الطلب 📨</button>
+								<button type="submit"
+								class="submit-button disabled"
+								 id="submit-button"
+  								 disabled
+								>إرسال الطلب 📨</button>
 							</form>
 						</div>
 					</div>
