@@ -200,9 +200,9 @@ function initLocationModal() {
 
 async function loadNavbar() {
 	try {
-		let navbarPath = '../home/navbar/navbar.html';
+		let navbarPath = '../shared/navbar/navbar.html';
 		if (window.location.pathname === '/' || window.location.pathname.endsWith('/index.html')) {
-			navbarPath = 'home/navbar/navbar.html';
+			navbarPath = 'shared/navbar/navbar.html';
 		}
 
 		const response = await fetch(navbarPath);
@@ -260,9 +260,9 @@ function initializeNavbar() {
 
 async function loadFooter() {
 	try {
-		let footerPath = '../home/footer/footer.html';
+		let footerPath = '../shared/footer/footer.html';
 		if (window.location.pathname === '/' || window.location.pathname.endsWith('/index.html')) {
-			footerPath = 'home/footer/footer.html';
+			footerPath = 'shared/footer/footer.html';
 		}
 
 		const response = await fetch(footerPath);
