@@ -1,388 +1,439 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
-	<link rel="stylesheet" href="css/index.css" />
-	<style>
-.root {
-	position: relative;
-}
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" href="css/index.css" />
+		<style>
+			/* Modal Styles (Location Modal) */
+			.modal-overlay {
+				position: fixed;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				background-color: rgba(0, 0, 0, 0.5);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				z-index: 2000;
+			}
 
-.navbar {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	background-color: #fff;
-	padding: 5px 5px;
-	box-shadow: 0 2px 4px rgba(173, 106, 68, 0.479);
-	direction: rtl;
-	position: sticky;
-	top: 0;
-	z-index: 1000;
-	min-height: 64px;
-	flex-wrap: nowrap;
-	margin-top: 2px;
-	margin-bottom: 2px;
-	margin-left: 2px;
-	margin-right: 2px;
-}
+			.modal-content {
+				background: white;
+				border-radius: 8px;
+				padding: 30px;
+				max-width: 400px;
+				width: 90%;
+				box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+			}
 
-.logo {
-	height: 70px;
-	max-height: 64px;
-	margin-left: 0px;
-	cursor: pointer;
-}
+			.modal-header {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				margin-bottom: 20px;
+				direction: rtl;
+			}
 
-.mobile-only-cart {
-	display: flex;
-	align-items: center;
-	gap: 8px;
-	position: relative;
-	cursor: pointer;
-}
+			.modal-header h2 {
+				margin: 0;
+				color: #ff6f00;
+				font-size: 1.5rem;
+			}
 
-.mobile-only-cart .cart-badge {
-	position: absolute;
-	top: -10px;
-	right: -20px;
-	background-color: #ff4444;
-	color: white;
-	border-radius: 50%;
-	font-size: 10px;
-}
+			.close-btn {
+				background: none;
+				border: none;
+				font-size: 1.5rem;
+				cursor: pointer;
+				color: #666;
+			}
 
-.mobile-only-cart img {
-	width: 24px;
-	height: 24px;
-	margin-left: 0px;
-}
+			.modal-body {
+				display: flex;
+				flex-direction: column;
+				gap: 15px;
+				direction: rtl;
+			}
 
-.desktop-menu {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	flex: 1 1 auto;
-	width: auto;
-}
+			.root {
+				position: relative;
+			}
 
-.navbar-center,
-.navbar-right {
-	display: flex;
-	align-items: center;
-}
+			.navbar {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				background-color: #fff;
+				padding: 5px 5px;
+				box-shadow: 0 2px 4px rgba(173, 106, 68, 0.479);
+				direction: rtl;
+				position: sticky;
+				top: 0;
+				z-index: 1000;
+				min-height: 64px;
+				flex-wrap: nowrap;
+				margin-top: 2px;
+				margin-bottom: 2px;
+				margin-left: 2px;
+				margin-right: 2px;
+			}
 
-.navbar-center {
-	flex: 1 1 auto;
-	justify-content: center;
-	gap: 8px;
-}
+			.logo {
+				height: 70px;
+				max-height: 64px;
+				margin-left: 0px;
+				cursor: pointer;
+			}
 
-.navbar-right {
-	flex: 0 0 auto;
-	gap: 8px;
-}
+			.mobile-only-cart {
+				display: flex;
+				align-items: center;
+				gap: 8px;
+				position: relative;
+				cursor: pointer;
+			}
 
-.nav-item {
-	color: #000;
-	text-decoration: none;
-	margin: 0;
-	padding: 5px;
-	display: flex;
-	font-weight: 500;
-	align-items: center;
-	font-size: 14px;
-	white-space: nowrap;
-	border-radius: 6px;
-	text-align: center;
-	vertical-align: middle;
-}
+			.mobile-only-cart .cart-badge {
+				position: absolute;
+				top: -10px;
+				right: -20px;
+				background-color: #ff4444;
+				color: white;
+				border-radius: 50%;
+				font-size: 10px;
+			}
 
-.nav-item:hover {
-	background: rgba(255, 111, 0, 0.144);
-	border-bottom: 1px solid rgba(0, 0, 0, 0.623);
-}
+			.mobile-only-cart img {
+				width: 24px;
+				height: 24px;
+				margin-left: 0px;
+			}
 
-.nav-item img {
-	margin-left: 5px;
-	height: 20px;
-	width: auto;
-}
+			.desktop-menu {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				flex: 1 1 auto;
+				width: auto;
+			}
 
-.mobile-only-cart.nav-item img,
-.mobile-only-cart img {
-	margin-left: 0px;
-}
+			.navbar-center,
+			.navbar-right {
+				display: flex;
+				align-items: center;
+			}
 
-.login-icon {
-	color: #e46911;
-}
+			.navbar-center {
+				flex: 1 1 auto;
+				justify-content: center;
+				gap: 8px;
+			}
 
-.cart-icon {
-	background-color: #ff6f00;
-	color: #fff;
-	padding: 5px;
-	border-radius: 5px;
-	transition: all 0.3s ease;
-	text-decoration: none;
-	display: flex;
-	align-items: center;
-	gap: 5px;
-}
+			.navbar-right {
+				flex: 0 0 auto;
+				gap: 8px;
+			}
 
-.cart-icon:hover {
-	background-color: #f59d5a;
-	border: 1px #ff6f00 solid;
-}
+			.nav-item {
+				color: #000;
+				text-decoration: none;
+				margin: 0;
+				padding: 5px;
+				display: flex;
+				font-weight: 500;
+				align-items: center;
+				font-size: 14px;
+				white-space: nowrap;
+				border-radius: 6px;
+				text-align: center;
+				vertical-align: middle;
+			}
 
-.cart-badge {
-	background-color: #fff;
-	color: #ff6f00;
-	border: 1px solid white;
-	border-radius: 50%;
-	padding: 2px 8px;
-	font-size: 12px;
-	font-weight: bold;
-	margin: 0 5px;
-	min-width: 20px;
-	text-align: center;
-}
+			.nav-item:hover {
+				background: rgba(255, 111, 0, 0.144);
+				border-bottom: 1px solid rgba(0, 0, 0, 0.623);
+			}
 
-/* Floating Cart Button */
-.floating-cart-btn {
-	position: fixed;
-	bottom: 30px;
-	left: 30px;
-	width: 70px;
-	height: 70px;
-	background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
-	border-radius: 50%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
-	cursor: pointer;
-	z-index: 1000;
-	transition: all 0.3s ease;
-	text-decoration: none;
-}
+			.nav-item img {
+				margin-left: 5px;
+				height: 20px;
+				width: auto;
+			}
 
-.floating-cart-btn:hover {
-	transform: scale(1.1);
-	box-shadow: 0 12px 35px rgba(255, 107, 53, 0.6);
-}
+			.mobile-only-cart.nav-item img,
+			.mobile-only-cart img {
+				margin-left: 0px;
+			}
 
-.floating-cart-btn img {
-	width: 35px;
-	height: 35px;
-	object-fit: contain;
-}
+			.login-icon {
+				color: #e46911;
+			}
 
-.floating-cart-badge {
-	position: absolute;
-	top: -5px;
-	right: -5px;
-	background-color: #fff;
-	color: #ff6f00;
-	border: 2px solid #ff6b35;
-	border-radius: 50%;
-	width: 28px;
-	height: 28px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	font-size: 12px;
-	font-weight: bold;
-	min-width: 28px;
-}
+			.cart-icon {
+				background-color: #ff6f00;
+				color: #fff;
+				padding: 5px;
+				border-radius: 5px;
+				transition: all 0.3s ease;
+				text-decoration: none;
+				display: flex;
+				align-items: center;
+				gap: 5px;
+			}
 
-.floating-cart-btn.hidden {
-	display: none;
-}
+			.cart-icon:hover {
+				background-color: #f59d5a;
+				border: 1px #ff6f00 solid;
+			}
 
-@media (max-width: 768px) {
-	.floating-cart-btn {
-		width: 60px;
-		height: 60px;
-		bottom: 20px;
-		left: 20px;
-	}
+			.cart-badge {
+				background-color: #fff;
+				color: #ff6f00;
+				border: 1px solid white;
+				border-radius: 50%;
+				padding: 2px 8px;
+				font-size: 12px;
+				font-weight: bold;
+				margin: 0 5px;
+				min-width: 20px;
+				text-align: center;
+			}
 
-	.floating-cart-btn img {
-		width: 30px;
-		height: 30px;
-	}
+			/* Floating Cart Button */
+			.floating-cart-btn {
+				position: fixed;
+				bottom: 30px;
+				left: 30px;
+				width: 70px;
+				height: 70px;
+				background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
+				cursor: pointer;
+				z-index: 1000;
+				transition: all 0.3s ease;
+				text-decoration: none;
+			}
 
-	.floating-cart-badge {
-		width: 24px;
-		height: 24px;
-		font-size: 11px;
-		min-width: 24px;
-	}
-}
+			.floating-cart-btn:hover {
+				transform: scale(1.1);
+				box-shadow: 0 12px 35px rgba(255, 107, 53, 0.6);
+			}
 
-/* Responsive Navbar Styles */
-@media screen and (max-width: 1024px) {
-	.nav-item {
-		margin: 0;
-		padding: 5px;
-		font-size: 14px;
-	}
+			.floating-cart-btn img {
+				width: 35px;
+				height: 35px;
+				object-fit: contain;
+			}
 
-	.logo {
-		height: 48px;
-	}
-}
+			.floating-cart-badge {
+				position: absolute;
+				top: -5px;
+				right: -5px;
+				background-color: #fff;
+				color: #ff6f00;
+				border: 2px solid #ff6b35;
+				border-radius: 50%;
+				width: 28px;
+				height: 28px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 12px;
+				font-weight: bold;
+				min-width: 28px;
+			}
 
-@media (min-width: 768px) {
-	.mobile-only-cart {
-		display: none !important;
-	}
+			.floating-cart-btn.hidden {
+				display: none;
+			}
 
-	.mobile-menu {
-		display: none !important;
-	}
+			@media (max-width: 768px) {
+				.floating-cart-btn {
+					width: 60px;
+					height: 60px;
+					bottom: 20px;
+					left: 20px;
+				}
 
-	.desktop-menu {
-		display: flex !important;
-	}
-}
+				.floating-cart-btn img {
+					width: 30px;
+					height: 30px;
+				}
 
-@media screen and (max-width: 767px) {
-	.desktop-menu {
-		display: none !important;
-	}
+				.floating-cart-badge {
+					width: 24px;
+					height: 24px;
+					font-size: 11px;
+					min-width: 24px;
+				}
+			}
 
-	.mobile-menu {
-		display: none;
-		position: absolute;
-		top: 100%;
-		right: 0;
-		width: 100%;
-		background-color: #fff;
-		padding: 20px;
-		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-		z-index: 1000;
-	}
+			/* Responsive Navbar Styles */
+			@media screen and (max-width: 1024px) {
+				.nav-item {
+					margin: 0;
+					padding: 5px;
+					font-size: 14px;
+				}
 
-	.mobile-menu.active {
-		display: block;
-	}
+				.logo {
+					height: 48px;
+				}
+			}
 
-	.mobile-menu .navbar-center,
-	.mobile-menu .navbar-right {
-		flex-direction: column;
-		align-items: stretch;
-	}
+			@media (min-width: 768px) {
+				.mobile-only-cart {
+					display: none !important;
+				}
 
-	.mobile-menu .nav-item {
-		margin: 10px 0;
-		padding: 10px;
-		justify-content: flex-start;
-		font-size: 14px;
-	}
+				.mobile-menu {
+					display: none !important;
+				}
 
-	.cart-icon {
-		margin-top: 10px;
-	}
-}
+				.desktop-menu {
+					display: flex !important;
+				}
+			}
 
-@media screen and (max-width: 480px) {
-	.logo {
-		height: 40px;
-	}
+			@media screen and (max-width: 767px) {
+				.desktop-menu {
+					display: none !important;
+				}
 
-	.nav-item {
-		font-size: 14px;
-		margin: 0;
-		padding: 5px;
-	}
-}
-	</style>
-</head>
-<body>
-<nav class="navbar">
-	<div class="navbar-left">
-		<a href="/">
-			<img
-				src="assets/images/mazaq_alandalus_navbar.jpg"
-				alt="Company Logo"
-				class="logo"
-			/>
-		</a>
-	</div>
+				.mobile-menu {
+					display: none;
+					position: absolute;
+					top: 100%;
+					right: 0;
+					width: 100%;
+					background-color: #fff;
+					padding: 20px;
+					box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+					z-index: 1000;
+				}
 
-	<!-- Mobile Cart Icon (visible only on mobile) - في أقصى اليسار -->
-	<a href="orders.html" class="nav-item cart-icon mobile-only-cart">
-		<span class="cart-badge" id="mobile-cart-badge" style="display: none">0</span>
-		<img src="assets/images/cart.png" alt="Cart" />
-	</a>
+				.mobile-menu.active {
+					display: block;
+				}
 
-	<!-- Mobile Menu -->
-	<div class="mobile-menu" id="mobile-menu">
-		<div class="navbar-center">
-			<a href="orders.html" class="nav-item">عروض</a>
-			<a href="food.html" class="nav-item">
-				<img src="assets/images/mazaq_alnubala.jpg" style="height: 4vh" alt="" />
-				مذاق النبلاء للمأكولات
+				.mobile-menu .navbar-center,
+				.mobile-menu .navbar-right {
+					flex-direction: column;
+					align-items: stretch;
+				}
+
+				.mobile-menu .nav-item {
+					margin: 10px 0;
+					padding: 10px;
+					justify-content: flex-start;
+					font-size: 14px;
+				}
+
+				.cart-icon {
+					margin-top: 10px;
+				}
+			}
+
+			@media screen and (max-width: 480px) {
+				.logo {
+					height: 40px;
+				}
+
+				.nav-item {
+					font-size: 14px;
+					margin: 0;
+					padding: 5px;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<nav class="navbar">
+			<div class="navbar-left">
+				<a href="/">
+					<img
+						src="assets/images/mazaq_alandalus_navbar.jpg"
+						alt="Company Logo"
+						class="logo"
+					/>
+				</a>
+			</div>
+
+			<!-- Mobile Cart Icon (visible only on mobile) - في أقصى اليسار -->
+			<a href="orders.html" class="nav-item cart-icon mobile-only-cart">
+				<span class="cart-badge" id="mobile-cart-badge" style="display: none">0</span>
+				<img src="assets/images/cart.png" alt="Cart" />
 			</a>
-			<a href="sweets.html" class="nav-item">
-				<img
-					src="assets/images/mazaq_alandalus_logo.png"
-					style="height: 4vh"
-					alt=""
-				/>
-				مذاق الأندلس للحلويات
-			</a>
-			<a href="special-orders.html" class="nav-item">
-				<img src="assets/images/delivery.png" style="height: 4vh" alt="" />
-				عروض المناسبات والحفلات
-			</a>
-		</div>
-		<div class="navbar-right">
-			<a href="orders.html" class="nav-item cart-icon">
-				<img src="assets/images/cart.png" alt="" />
-				عربة التسوق
-				<span class="cart-badge" id="mobile-menu-cart-badge" style="display: none">0</span>
-			</a>
-		</div>
-	</div>
 
-	<!-- Desktop Menu -->
-	<div class="desktop-menu">
-		<div class="navbar-center main-links">
-			<a href="food.html" class="nav-item">
-				<img src="assets/images/mazaq_alnubala.jpg" style="height: 4vh" alt="" />
-				مذاق النبلاء للمأكولات
-			</a>
-			<a href="sweets.html" class="nav-item">
-				<img
-					src="assets/images/mazaq_alnubala.jpg"
-					style="height: 4vh"
-					alt=""
-				/>
-				مذاق الأندلس للحلويات
-			</a>
-			<a href="special-orders.html" class="nav-item">
-				<img src="assets/images/delivery.png" style="height: 4vh" alt="" />
-				عروض المناسبات والحفلات
-			</a>
-		</div>
-		<div class="navbar-right">
-			<a href="orders.html" class="nav-item cart-icon">
-				<img src="assets/images/cart.png" alt="" />
-				عربة التسوق
-				<span class="cart-badge" id="desktop-cart-badge" style="display: none">0</span>
-			</a>
-		</div>
-	</div>
-</nav>
-<script src="js/index.js"></script>
-</body>
+			<!-- Mobile Menu -->
+			<div class="mobile-menu" id="mobile-menu">
+				<div class="navbar-center">
+					<a href="orders.html" class="nav-item">عروض</a>
+					<a href="food.html" class="nav-item">
+						<img src="assets/images/mazaq_alnubala.jpg" style="height: 4vh" alt="" />
+						مذاق النبلاء للمأكولات
+					</a>
+					<a href="sweets.html" class="nav-item">
+						<img
+							src="assets/images/mazaq_alandalus_logo.png"
+							style="height: 4vh"
+							alt=""
+						/>
+						مذاق الأندلس للحلويات
+					</a>
+					<a href="special-orders.html" class="nav-item">
+						<img src="assets/images/delivery.png" style="height: 4vh" alt="" />
+						عروض المناسبات والحفلات
+					</a>
+				</div>
+				<div class="navbar-right">
+					<a href="orders.html" class="nav-item cart-icon">
+						<img src="assets/images/cart.png" alt="" />
+						عربة التسوق
+						<span class="cart-badge" id="mobile-menu-cart-badge" style="display: none"
+							>0</span
+						>
+					</a>
+				</div>
+			</div>
+
+			<!-- Desktop Menu -->
+			<div class="desktop-menu">
+				<div class="navbar-center main-links">
+					<a href="food.html" class="nav-item">
+						<img src="assets/images/mazaq_alnubala.jpg" style="height: 4vh" alt="" />
+						مذاق النبلاء للمأكولات
+					</a>
+					<a href="sweets.html" class="nav-item">
+						<img src="assets/images/mazaq_alnubala.jpg" style="height: 4vh" alt="" />
+						مذاق الأندلس للحلويات
+					</a>
+					<a href="special-orders.html" class="nav-item">
+						<img src="assets/images/delivery.png" style="height: 4vh" alt="" />
+						عروض المناسبات والحفلات
+					</a>
+				</div>
+				<div class="navbar-right">
+					<a href="orders.html" class="nav-item cart-icon">
+						<img src="assets/images/cart.png" alt="" />
+						عربة التسوق
+						<span class="cart-badge" id="desktop-cart-badge" style="display: none"
+							>0</span
+						>
+					</a>
+				</div>
+			</div>
+		</nav>
+		<script src="js/index.js"></script>
+	</body>
 </html>
-
 
 <!--
 Location Modal -
