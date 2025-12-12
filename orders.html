@@ -459,7 +459,8 @@
 		}
 
 		.form-group input,
-		.form-group textarea {
+		.form-group textarea,
+		.form-group select {
 			padding: 0.75rem;
 			border: 2px solid #ddd;
 			border-radius: 8px;
@@ -469,7 +470,8 @@
 		}
 
 		.form-group input:focus,
-		.form-group textarea:focus {
+		.form-group textarea:focus,
+		.form-group select:focus {
 			outline: none;
 			border-color: #ff6f00;
 		}
@@ -613,6 +615,17 @@
 					<div class="form-group">
 						<label for="delivery-date">تاريخ التوصيل</label>
 						<input type="date" id="delivery-date" name="delivery_date" />
+					</div>
+					<div class="form-group">
+						<label for="branch-select">الفرع *</label>
+						<select id="branch-select" name="branch" class="form-group input" required>
+							<option value="">اختر الفرع</option>
+							<option value="khudraa">فرع الخضراء</option>
+							<option value="nawaria">فرع النوارية</option>
+							<option value="sharai">فرع الشرائع</option>
+							<option value="sitteen">فرع الستين</option>
+							<option value="awali">فرع العوالي</option>
+						</select>
 					</div>
 					<div id="checkout-error" class="error-message" style="display: none"></div>
 					<div id="checkout-success" class="success-message" style="display: none"></div>
@@ -782,6 +795,12 @@
 					if (deliveryDateInput) {
 						deliveryDateInput.value = tomorrow.toISOString().split('T')[0];
 					}
+					// Set branch from localStorage if available
+					const branchSelect = document.getElementById('branch-select');
+					const userLocation = localStorage.getItem('userLocation');
+					if (branchSelect && userLocation) {
+						branchSelect.value = userLocation;
+					}
 				}
 			}
 
@@ -830,7 +849,7 @@
 						mobile_no: formData.get('mobile_no'),
 						shipping_address: formData.get('shipping_address'),
 						delivery_date: formData.get('delivery_date'),
-						branch: formData.get('branch'),
+						branch: formData.get('branch') || localStorage.getItem('userLocation'),
 					};
 
 					// Validate required fields
