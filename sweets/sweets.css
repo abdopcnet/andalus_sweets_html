@@ -360,18 +360,8 @@ hr {
 .parts-section {
 	height: auto;
 	min-height: 60vh;
-
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	gap: 2rem;
-}
-.parts-section {
-	height: auto;
-	min-height: 60vh;
-	margin: 3vh auto;
-	padding: 1rem 1rem;
+	margin: 0;
+	padding: 0;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
