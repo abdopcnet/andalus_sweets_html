@@ -105,6 +105,3 @@ body {
 	background-color: #ccc;
 	cursor: not-allowed;
 }
-
-/* Import FAB Styles */
-@import url('fab.css');
