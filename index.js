@@ -34,6 +34,21 @@ function updateCartUI() {
 			badge.style.display = 'none';
 		}
 	});
+	
+	// Update floating cart badge
+	const floatingBadge = document.getElementById('floating-cart-badge');
+	const floatingBtn = document.getElementById('floating-cart-btn');
+	if (floatingBadge && floatingBtn) {
+		if (count > 0) {
+			floatingBadge.textContent = count;
+			floatingBadge.style.display = 'flex';
+			floatingBtn.classList.remove('hidden');
+		} else {
+			floatingBadge.style.display = 'none';
+			floatingBtn.classList.add('hidden');
+		}
+	}
+	
 	window.dispatchEvent(new Event('cartUpdated'));
 }
 
@@ -291,6 +306,9 @@ document.addEventListener('DOMContentLoaded', () => {
 	// Load navbar and footer
 	loadNavbar();
 	loadFooter();
+	
+	// Update cart UI on page load
+	updateCartUI();
 
 	// Initialize cart UI
 	updateCartUI();
