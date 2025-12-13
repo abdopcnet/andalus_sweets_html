@@ -291,9 +291,6 @@ document.addEventListener('DOMContentLoaded', () => {
 	// Update cart UI on page load
 	updateCartUI();
 
-	// Initialize cart UI
-	updateCartUI();
-
 	// Initialize location modal
 	initLocationModal();
 
