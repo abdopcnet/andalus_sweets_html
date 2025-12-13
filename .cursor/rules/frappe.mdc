@@ -1,0 +1,331 @@
+---
+alwaysApply: true
+---
+# Frappe Framework & ERPNext - AI Agent Guidelines
+
+## 0. COMMUNICATION RULES 📢
+
+**CRITICAL: All AI responses must be in SHORT ENGLISH ONLY**
+
+-   Keep responses brief and direct
+-   Use simple, clear English
+-   Avoid lengthy explanations
+-   Number points when listing items
+-   End with a summary of changes
+
+**CODE COMMENTS: English only, above every section**
+
+-   All code comments must be in English
+-   Place comments above code sections, not inline
+-   Use clear, descriptive comments
+
+## 1. FRAMEWORK LOCATIONS 🏛️
+
+**Frappe Framework:**
+
+-   Location: `/home/frappe/frappe-bench/apps/frappe`
+-   Core framework directory: `/home/frappe/frappe-bench/apps/frappe/frappe/`
+-   Python-based full-stack web framework
+-   Metadata-driven, low-code framework
+
+**ERPNext Application:**
+
+-   Location: `/home/frappe/frappe-bench/apps/erpnext`
+-   Core application directory: `/home/frappe/frappe-bench/apps/erpnext/erpnext/`
+-   Built on Frappe Framework
+-   Enterprise Resource Planning (ERP) system
+
+**Bench Structure:**
+
+-   Bench directory: `/home/frappe/frappe-bench/`
+-   Apps installed in: `/home/frappe/frappe-bench/apps/`
+-   Sites in: `/home/frappe/frappe-bench/sites/`
+
+## 2. FRAPPE FRAMEWORK STRUCTURE 📁
+
+### 2.1. Core Frappe Modules
+
+**Key Directories in `/home/frappe/frappe-bench/apps/frappe/frappe/`:**
+
+```
+api/              # API endpoints and handlers
+automation/       # Automation and workflow
+change_log/       # Change log system
+commands/         # CLI commands
+config/           # Configuration management
+contacts/         # Contact management
+core/             # Core framework functionality
+custom/           # Custom code directory
+data/             # Data management
+database/         # Database abstraction layer
+desk/             # Desk UI (forms, lists, reports, pages)
+email/            # Email functionality
+geo/              # Geolocation features
+gettext/          # Internationalization
+integrations/     # Third-party integrations
+locale/           # Localization files
+model/            # Data model and ORM
+modules/          # Module system
+patches/          # Database migration patches
+printing/         # Print format system
+public/           # Public assets (CSS, JS, images)
+pulse/            # Real-time updates
+query_builder/    # SQL query builder
+search/           # Search functionality
+social/           # Social features
+templates/        # Jinja2 templates
+tests/            # Test suite
+translations/     # Translation files
+types/            # Type system
+utils/            # Utility functions
+website/          # Website builder
+workflow/         # Workflow engine
+www/              # Web interface
+```
+
+### 2.2. Frappe Desk Structure
+
+**Key Components in `/home/frappe/frappe-bench/apps/frappe/frappe/desk/`:**
+
+```
+desktop.py        # Desktop/home page
+doctype/          # DocType handlers (form, list, report views)
+form/             # Form rendering
+page/             # Custom pages
+report/           # Report builders
+```
+
+**DocType Files Pattern:**
+
+-   JSON: `frappe/desk/doctype/[doctype_name]/[doctype_name].json`
+-   Python: `frappe/desk/doctype/[doctype_name]/[doctype_name].py`
+-   JavaScript: `frappe/desk/doctype/[doctype_name]/[doctype_name].js`
+
+## 3. ERPNEXT APPLICATION STRUCTURE 📦
+
+### 3.1. Core ERPNext Modules
+
+**Key Directories in `/home/frappe/frappe-bench/apps/erpnext/erpnext/`:**
+
+```
+accounts/         # Accounting module
+assets/           # Asset management
+bulk_transaction/ # Bulk transaction processing
+buying/           # Procurement module
+change_log/       # Change log
+commands/         # CLI commands
+communication/    # Communication management
+config/           # Configuration
+controllers/      # Business logic controllers
+crm/              # Customer Relationship Management
+domains/          # Domain-specific features
+edi/              # Electronic Data Interchange
+erpnext_integrations/ # Third-party integrations
+exceptions.py     # Custom exceptions
+hooks.py          # Application hooks
+maintenance/      # Maintenance management
+manufacturing/    # Manufacturing module
+patches/          # Database migration patches
+portal/           # Customer portal
+projects/         # Project management
+public/           # Public assets
+quality_management/ # Quality control
+regional/         # Regional features
+selling/          # Sales module
+stock/            # Inventory management
+support/          # Support module
+subcontracting/   # Subcontracting
+templates/        # Templates
+telephony/        # Telephony integration
+translations/     # Translation files
+utilities/        # Utility functions
+```
+
+### 3.2. ERPNext Module Structure
+
+Each module typically contains:
+
+-   `doctype/` - DocTypes (data models)
+-   `page/` - Custom pages
+-   `report/` - Reports
+-   `dashboard/` - Dashboards
+-   `workspace/` - Workspaces
+-   `onboarding/` - Onboarding steps
+
+## 4. FIELD NAMING & DATA INTEGRITY 📌
+
+1. Use only real DB field names from the schema.
+2. No fake/temp/abbrev fields; only actual table fields.
+3. Verify fields via DB schema or DocType JSON before use.
+
+## 5. CODE ANALYSIS PRINCIPLES 🧭
+
+1. Base answers on actual code analysis only.
+2. Understand architecture before proposing solutions.
+3. Read the real files; no guesses.
+4. Reference Frappe/ERPNext source code for patterns and best practices.
+
+## 6. CORE SYSTEM APPLICATIONS REFERENCE 🏛️
+
+1. Reference `/home/frappe/frappe-bench/apps/frappe` for Frappe framework patterns.
+2. Reference `/home/frappe/frappe-bench/apps/erpnext` for ERPNext application patterns.
+3. Search these apps to learn structure and best practices.
+4. Use Frappe's built-in modules as examples for custom development.
+
+## 7. DATABASE MODIFICATION PROTOCOL 🔒
+
+1. Never modify DB without explicit permission.
+2. Always ask before DROP/ALTER/INSERT/UPDATE.
+3. Use Frappe's migration system (patches) for schema changes.
+
+### 7.1. DATABASE FIELD QUERY PROTOCOL ✅
+
+1. Use: `bench --site [site_name] mariadb -e "DESCRIBE \`tabTableName\`;\"` to inspect fields.
+2. Replace `TableName` with actual DocType (e.g., `tabPOS Profile`).
+3. Never assume field names; always verify first.
+4. First, fetch table structure (use DESCRIBE):
+    1. Fetch `tabDocType` to see all doctypes in system:
+        - `bench --site [site_name] mariadb -e "DESCRIBE \`tabDocType\`;\"`
+    2. Fetch `tabDocField` to see system fields:
+        - `bench --site [site_name] mariadb -e "DESCRIBE \`tabDocField\`;\"`
+    3. Fetch `tabCustom Field` to see custom fields:
+        - `bench --site [site_name] mariadb -e "DESCRIBE \`tabCustom Field\`;\"`
+    4. Fetch `tabError Log` to see error logs:
+        - `bench --site [site_name] mariadb -e "DESCRIBE \`tabError Log\`;\"`
+    5. Check table structure examples:
+        - `bench --site [site_name] mariadb -e "DESCRIBE \`tabSales Invoice\`;\"`
+        - `bench --site [site_name] mariadb -e "DESCRIBE \`tabPayment Entry\`;\"`
+        - `bench --site [site_name] mariadb -e "DESCRIBE \`tabPayment Entry Reference\`;\"`
+5. Then, fetch records (use SELECT):
+    - `bench --site [site_name] mariadb -e "SELECT * FROM \`tabSales Invoice\` LIMIT 10;\"`
+    - `bench --site [site_name] mariadb -e "SELECT name, field1, field2 FROM \`tabTableName\` WHERE condition LIMIT 10;\"`
+
+### 7.2. FIND DOCTYPE FILES PROTOCOL
+
+1. To find DocType files (JSON, PY, JS), convert DocType name to lowercase with underscores (e.g., "POS Opening Shift" → "pos_opening_shift").
+2. Use: `find /home/frappe/frappe-bench/apps -type f \( -iname 'doctype_name.json' -o -iname 'doctype_name.py' -o -iname 'doctype_name.js' \)`
+3. Example for "POS Opening Shift":
+    - `find /home/frappe/frappe-bench/apps -type f \( -iname 'pos_opening_shift.json' -o -iname 'pos_opening_shift.py' -o -iname 'pos_opening_shift.js' \)`
+4. Check both Frappe and ERPNext apps:
+    - Frappe: `/home/frappe/frappe-bench/apps/frappe/frappe/desk/doctype/`
+    - ERPNext: `/home/frappe/frappe-bench/apps/erpnext/erpnext/[module]/doctype/`
+
+### 7.3. RULE COMMAND TROUBLESHOOTING PROTOCOL
+
+1. If a rule command fails, check syntax, bench env, site, DB connection, table exists.
+2. If blocked, explain cause, ask user to run, fallback to DocType JSON only as last resort.
+3. Document any command failure and its cause.
+
+## 8. DEVELOPMENT WORKFLOW 🧭
+
+1. Manual read/write; avoid bulk modify commands.
+2. Update `plan.md` before changes; document modifications.
+3. Read files fully before editing; use read tools, not broad search.
+4. Follow Frappe's coding standards and patterns.
+5. Use Frappe's hooks system for customization.
+6. Create custom apps in `/home/frappe/frappe-bench/apps/` for customizations.
+
+## 9. FRAPPE DEVELOPMENT PATTERNS 🎯
+
+### 9.1. DocType Development
+
+1. **DocType JSON**: Define fields, permissions, validations
+2. **Python Controller**: Business logic, validations, calculations
+3. **JavaScript Client Script**: Client-side logic, form customization
+4. **Print Format**: Custom print layouts
+5. **Report**: Custom reports and queries
+
+### 9.2. Custom App Development
+
+1. Create app: `bench new-app [app_name]`
+2. Install app: `bench --site [site_name] install-app [app_name]`
+3. App structure:
+    ```
+    [app_name]/
+      ├── [app_name]/
+      │   ├── __init__.py
+      │   ├── modules.txt
+      │   ├── hooks.py
+      │   └── [module]/
+      │       ├── doctype/
+      │       ├── page/
+      │       └── report/
+      └── setup.py
+    ```
+
+### 9.3. Hooks System
+
+-   `hooks.py` - Application hooks for customization
+-   Hook types: `app_include_js`, `app_include_css`, `doc_events`, `scheduler_events`, etc.
+-   Reference: `/home/frappe/frappe-bench/apps/erpnext/erpnext/hooks.py`
+
+## 10. CODE QUALITY STANDARDS 🎛️
+
+1. Review syntax every time before saving.
+2. Keep formatting consistent; follow project style.
+3. Write English comments above sections (not beside code).
+4. Follow Frappe's Python and JavaScript coding standards.
+5. Use Frappe's built-in utilities and functions.
+6. Handle errors properly using Frappe's exception system.
+
+## 11. COMMUNICATION & VERIFICATION ✅
+
+1. Start responses with numbered points.
+2. Use simple, concise English friendly to Arabic readers.
+3. End every response with `Applied rules:` followed by the applied rules list (one line per section in this exact format, no numbers), then end with ✅:
+    - `📢 COMMUNICATION RULES`
+    - `🏛️ FRAMEWORK LOCATIONS`
+    - `📁 FRAPPE FRAMEWORK STRUCTURE`
+    - `📦 ERPNEXT APPLICATION STRUCTURE`
+    - `📌 FIELD NAMING & DATA INTEGRITY`
+    - `🧭 CODE ANALYSIS PRINCIPLES`
+    - `🏛️ CORE SYSTEM APPLICATIONS REFERENCE`
+    - `🔒 DATABASE MODIFICATION PROTOCOL`
+    - `🧭 DEVELOPMENT WORKFLOW`
+    - `🎯 FRAPPE DEVELOPMENT PATTERNS`
+    - `🎛️ CODE QUALITY STANDARDS`
+    - `✅ COMMUNICATION & VERIFICATION`
+
+---
+
+## Applied Rules Summary
+
+When working with Frappe/ERPNext, apply these principles:
+
+-   📢 **COMMUNICATION RULES** - Short English only, English comments above sections
+-   🏛️ **FRAMEWORK LOCATIONS** - Know Frappe and ERPNext installation paths
+-   📁 **FRAPPE FRAMEWORK STRUCTURE** - Understand core modules and desk structure
+-   📦 **ERPNEXT APPLICATION STRUCTURE** - Understand ERPNext modules and organization
+-   📌 **FIELD NAMING & DATA INTEGRITY** - Use only real DB field names, verify before use
+-   🧭 **CODE ANALYSIS PRINCIPLES** - Read actual files, understand architecture
+-   🏛️ **CORE SYSTEM APPLICATIONS REFERENCE** - Reference Frappe/ERPNext for patterns
+-   🔒 **DATABASE MODIFICATION PROTOCOL** - Never modify DB without permission, use proper queries
+-   🧭 **DEVELOPMENT WORKFLOW** - Read before edit, follow Frappe patterns
+-   🎯 **FRAPPE DEVELOPMENT PATTERNS** - Follow DocType and custom app patterns
+-   🎛️ **CODE QUALITY STANDARDS** - Review syntax, consistent formatting, English comments
+-   ✅ **COMMUNICATION & VERIFICATION** - Short English responses, numbered points
+
+---
+
+## Quick Reference
+
+**Frappe Core:**
+
+-   Framework: `/home/frappe/frappe-bench/apps/frappe/frappe/`
+-   Desk: `/home/frappe/frappe-bench/apps/frappe/frappe/desk/`
+-   DocTypes: `/home/frappe/frappe-bench/apps/frappe/frappe/desk/doctype/`
+
+**ERPNext Modules:**
+
+-   Application: `/home/frappe/frappe-bench/apps/erpnext/erpnext/`
+-   Accounts: `/home/frappe/frappe-bench/apps/erpnext/erpnext/accounts/`
+-   Selling: `/home/frappe/frappe-bench/apps/erpnext/erpnext/selling/`
+-   Stock: `/home/frappe/frappe-bench/apps/erpnext/erpnext/stock/`
+-   Manufacturing: `/home/frappe/frappe-bench/apps/erpnext/erpnext/manufacturing/`
+
+**Common Commands:**
+
+-   Check table: `bench --site [site_name] mariadb -e "DESCRIBE \`tabTableName\`;\"`
+-   Find DocType: `find /home/frappe/frappe-bench/apps -name "*doctype_name*"`
+-   Create app: `bench new-app [app_name]`
+-   Install app: `bench --site [site_name] install-app [app_name]`
